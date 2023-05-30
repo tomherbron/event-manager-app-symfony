@@ -6,6 +6,23 @@
         <link rel="icon" href="{{ asset('img/logo.png') }}">
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <div>
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="flash flash-{{ label }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <header>
+                {% include 'header/header.html.twig' %}
+        </header>
+        <main>
+            {% block body %}{% endblock %}
+        </main>
+        <footer>
+            {% include 'footer/footer.html.twig' %}
+        </footer>
     </body>
 </html>
