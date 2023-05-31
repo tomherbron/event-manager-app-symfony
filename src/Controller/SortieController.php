@@ -30,7 +30,6 @@ class SortieController extends AbstractController
             $campus = $sortieForm->get('campus')->getData();
             $newSortie->setCampus($campus);
 
-
             $repository->save($newSortie, true);
             return $this->redirectToRoute('main_home');
         }

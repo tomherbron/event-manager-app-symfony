@@ -2,8 +2,11 @@
 
 namespace App\Form;
 
+use App\Entity\Lieu;
 use App\Entity\Sortie;
 use App\Entity\Utilisateur;
+use App\Repository\LieuRepository;
+use App\Repository\UtilisateurRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -31,14 +34,19 @@ class SortieType extends AbstractType
             ])
             ->add('nbMaxInscriptions')
             ->add('infos', TextareaType::class)
-            ->add('campus', ChoiceType::class, ['choices' => [
+            ->add('campus', ChoiceType::class, [
+                'choices' => [
                 'Nantes' => 'Nantes',
                 'Chartres-de-Bretagne' => 'Chartres-de-Bretagne',
                 'Niort' => 'Niort',
-            ], 'expanded' => true, 'multiple' => true, 'mapped' => false
+            ], 'expanded' => true, 'multiple' => false, 'mapped' => false
 
             ])
-            ->add('lieu')
+            ->add('lieu', EntityType::class, [
+                'class' => Lieu::class,
+                'choice_label' => 'nom'
+            ])
+            ->add('ville', )
         ;
     }
 
