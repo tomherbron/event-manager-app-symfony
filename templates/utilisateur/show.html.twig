@@ -6,21 +6,17 @@
 
 {% block body %}
     <h2> Informations concernant {{ utilisateur.prenom }}</h2>
-
+<section>
     <div class ="utilisateur-infos">
-        <div class="profile-picture">
+        <div>
             <img src="{{ asset('img/profilePictures/' ~ utilisateur.photo) }}" alt="{{ utilisateur.username }}">
         </div>
         <h3>{{ utilisateur.nom }} {{ utilisateur.prenom }}</h3>
         <div> Téléphone : {{ utilisateur.telephone }}</div>
         <div> Email : {{ utilisateur.email }}</div>
         <div> campus : {{ utilisateur.campus.nom }}</div>
-
-
-
-
     </div>
 
-
+</section>
 
 {% endblock %}

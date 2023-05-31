@@ -24,7 +24,7 @@ class UtilisateurType extends AbstractType
             ->add('prenom', TextType::class)
             ->add('telephone', TextType::class)
             ->add('email', TextType::class)
-            ->add('password', PasswordType::class)
+            ->add('password', PasswordType::class,)
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'Le mot de passe doit correspondre.',
@@ -45,6 +45,7 @@ class UtilisateurType extends AbstractType
                 ])
             ->add('photo', FileType::class, [
                 'mapped'=>false,
+                'required'=>false,
             ])
 
         ;
