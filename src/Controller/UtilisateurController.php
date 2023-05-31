@@ -30,10 +30,22 @@ class UtilisateurController extends AbstractController
     #[Route('/update/{id}', name: 'update', requirements: ["id" => "\d+"])]
     public function update(int $id,
                            Request $request,
-                           UtilisateurRepository $utilisateurRepository): Response
+                           UtilisateurRepository $utilisateurRepository,): Response
     {
         $utilisateur = $utilisateurRepository->find($id);
         $utilisateurForm = $this->createForm(UtilisateurType::class, $utilisateur);
+        $utilisateurForm->handleRequest($request);
+        if($utilisateurForm->isSubmitted() && $utilisateurForm->isValid()){
+            $utilisateur->setActif(true);
+
+            $utilisateurRepository->save($utilisateur, true);
+            dump($utilisateur);
+
+            return $this->redirectToRoute('utilisateur_show',
+                ['id'=> $utilisateur->getId()]);
+
+
+        }
 
         return $this->render('utilisateur/update.html.twig', [
             'utilisateur'=> $utilisateur,
