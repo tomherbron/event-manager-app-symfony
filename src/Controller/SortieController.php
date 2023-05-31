@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Sortie;
 use App\Form\SortieType;
+use App\Repository\EtatRepository;
 use App\Repository\SortieRepository;
 use phpDocumentor\Reflection\Types\This;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,21 +17,25 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class SortieController extends AbstractController
 {
     #[Route('/add', name: 'add')]
-    public function add(Request $request, SortieRepository $repository): Response
+    public function add(Request $request, SortieRepository $sortieRepository, EtatRepository $etatRepository): Response
     {
         $newSortie = new Sortie();
         $sortieForm = $this->createForm(SortieType::class, $newSortie);
 
-        $user  = $this->getUser();
+        $user = $this->getUser();
 
         $sortieForm->handleRequest($request);
+
         if ($sortieForm->isSubmitted()){
 
             $newSortie->setOrganisateur($user);
             $campus = $sortieForm->get('campus')->getData();
             $newSortie->setCampus($campus);
+            $newSortie->setEtat(
+                $etatRepository->find('1')
+            );
 
-            $repository->save($newSortie, true);
+            $sortieRepository->save($newSortie, true);
             return $this->redirectToRoute('main_home');
         }
 
