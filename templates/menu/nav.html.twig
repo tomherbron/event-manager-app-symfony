@@ -1,7 +1,12 @@
 <nav>
     <ul>
         <li><a href="">Accueil</a></li>
+        {% if app.user %}
         <li><a href="{{  path('utilisateur_update', {'id': app.user.id})  }}">Profil</a></li>
         <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+            {% else %}
+                <li><a href="{{ path('app_login') }}">Connexion</a></li>
+
+        {% endif %}
     </ul>
 </nav>
