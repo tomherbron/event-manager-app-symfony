@@ -39,4 +39,16 @@ class SortieController extends AbstractController
             'sortieForm' => $sortieForm->createView()
         ]);
     }
+
+    #[Route('/list', name:'list')]
+    public function list(int $id, SortieRepository $sortieRepository) : Response
+    {
+        ##Renvoyer la liste des sorties
+        $sortie = $sortieRepository->find($id);
+
+        return $this->render('sortie/list.html.twig', [
+            'sorties'=>$sortie
+        ]);
+
+    }
 }
