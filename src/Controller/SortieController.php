@@ -10,8 +10,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
-#[Route('/sorties', name: 'sortie_')]
+#[Route('/sortie', name: 'sortie_')]
 class SortieController extends AbstractController
 {
     #[Route('/add', name: 'add')]
@@ -20,8 +21,16 @@ class SortieController extends AbstractController
         $newSortie = new Sortie();
         $sortieForm = $this->createForm(SortieType::class, $newSortie);
 
+        $user  = $this->getUser();
+
         $sortieForm->handleRequest($request);
         if ($sortieForm->isSubmitted()){
+
+            $newSortie->setOrganisateur($user);
+            $campus = $sortieForm->get('campus')->getData();
+            $newSortie->setCampus($campus);
+
+
             $repository->save($newSortie, true);
             return $this->redirectToRoute('main_home');
         }
