@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} | Modification
+{% endblock %}
+
+{% block body %}
+    <h1>Modifier le profil de {{ utilisateur.prenom }}</h1>
+
+    {{ form_start(utilisateurForm) }}
+    {{ form_widget(utilisateurForm) }}
+    <button type="submit" class="btn-primary" ></button>
+    {{ form_end(utilisateurForm) }}
+
+{% endblock %}

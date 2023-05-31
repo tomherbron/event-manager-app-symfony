@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{{ parent()  }} | Detail
+{% endblock %}
+
+{% block body %}
+    <h2> Informations concernant {{ utilisateur.prenom }}</h2>
+
+    <div class ="utilisateur-infos">
+        <h3>{{ utilisateur.nom }} {{ utilisateur.prenom }}</h3>
+        <div> Téléphone : {{ utilisateur.telephone }}</div>
+        <div> Email : {{ utilisateur.email }}</div>
+        <div> campus : {{ utilisateur.campus.nom }}</div>
+
+
+
+
+    </div>
+
+
+
+{% endblock %}
