@@ -8,6 +8,9 @@
     <h2> Informations concernant {{ utilisateur.prenom }}</h2>
 
     <div class ="utilisateur-infos">
+        <div class="profile-picture">
+            <img src="{{ asset('img/profilePictures/' ~ utilisateur.photo) }}" alt="{{ utilisateur.username }}">
+        </div>
         <h3>{{ utilisateur.nom }} {{ utilisateur.prenom }}</h3>
         <div> Téléphone : {{ utilisateur.telephone }}</div>
         <div> Email : {{ utilisateur.email }}</div>

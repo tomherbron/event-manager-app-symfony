@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Form\UtilisateurType;
 use App\Repository\UtilisateurRepository;
+use App\Tools\Uploader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,13 +32,23 @@ class UtilisateurController extends AbstractController
     #[Route('/update/{id}', name: 'update', requirements: ["id" => "\d+"])]
     public function update(int $id,
                            Request $request,
-                           UtilisateurRepository $utilisateurRepository,): Response
+                           UtilisateurRepository $utilisateurRepository,
+                           Uploader $uploader,): Response
     {
         $utilisateur = $utilisateurRepository->find($id);
         $utilisateurForm = $this->createForm(UtilisateurType::class, $utilisateur);
         $utilisateurForm->handleRequest($request);
         if($utilisateurForm->isSubmitted() && $utilisateurForm->isValid()){
             $utilisateur->setActif(true);
+
+            /**
+             * @var UploadedFile $file
+             */
+            $file =$utilisateurForm->get('photo')->getData();
+            if($file){
+                $newFileName=$uploader->save($file, $utilisateur->getUsername().'-'.$utilisateur->getNom(), $this->getParameter('upload_profile_picture'));
+            $utilisateur->setPhoto($newFileName);
+            }
 
             $utilisateurRepository->save($utilisateur, true);
             dump($utilisateur);

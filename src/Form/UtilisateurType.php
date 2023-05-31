@@ -7,6 +7,7 @@ use App\Entity\Utilisateur;
 use App\Repository\CampusRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -42,7 +43,9 @@ class UtilisateurType extends AbstractType
                 }
 
                 ])
-            ->add('photo')
+            ->add('photo', FileType::class, [
+                'mapped'=>false,
+            ])
 
         ;
     }
