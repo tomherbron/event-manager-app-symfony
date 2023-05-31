@@ -42,8 +42,7 @@ class SortieType extends AbstractType
                 'class' => Campus::class,
                 'choice_label' => 'nom',
                 'query_builder' => function(CampusRepository $repository){
-                    $qb = $repository->createQueryBuilder('c');
-                    return $qb;
+                    return $repository->createQueryBuilder('c');
                 }
             ])
             ->add('lieu', EntityType::class, [
