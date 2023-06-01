@@ -24,11 +24,11 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $user = new Utilisateur();
-        $user->setUsername('tomtats');
-        $user->setNom('Herbron');
-        $user->setPrenom('Tom');
+        $user->setUsername('julien');
+        $user->setNom('Chéreau');
+        $user->setPrenom('Julien');
         $user->setTelephone('0233289763');
-        $user->setEmail('tom@gmail.com');
+        $user->setEmail('julien@gmail.com');
         $user->setActif(true);
 
         $campus = $this->repository->find('1');

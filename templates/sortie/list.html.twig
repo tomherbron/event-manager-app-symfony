@@ -6,34 +6,60 @@
 
 {% block body %}
     <h2>Liste des sorties</h2>
+    <div class="container">
+        <table>
+            <thead>
+            <tr>
+                <th>Nom de la sortie</th>
+                <th>Date de la sortie</th>
+                <th>Clôture</th>
+                <th>Inscrits/Places</th>
+                <th>Etat</th>
+                <th>Inscrit</th>
+                <th>Organisateur</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for sortie in sorties %}
+                <tr>
+                    <td>{{ sortie.nom }}</td>
+                    <td>{{ sortie.dateHeureDebut | date('d/m/Y - H:i') }}</td>
+                    <td>{{ sortie.dateLimiteInscription | date('d/m/Y') }}</td>
+                    <td>{{ sortie.nbMaxInscriptions }}</td>
+                    <td>{{ sortie.etat.libelle }}</td>
+                    <td>{{ sortie.nom }}</td>
+                    <td>{{ sortie.organisateur.username }}</td>
+                    <td>{{ sortie.nom }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
-    <table>
-        <tr>
-            <th>  Nom de la sortie  </th>
-            <th>  Date de la sortie  </th>
-            <th>  Clôture  </th>
-            <th>  Inscrits/Places  </th>
-            <th>  Etat  </th>
-            <th>  Inscrit  </th>
-            <th>  Organisateur  </th>
-            <th>  Actions  </th>
-        </tr>
-
-
-        {% for sortie in sorties %}
-        <tr>
-            <td>{{ sortie.nom }}</td>
-            <td>{{ sortie.dateHeureDebut | date('d/m/Y - H:i') }}</td>
-            <td>{{ sortie.dateLimiteInscription | date('d/m/Y') }}</td>
-            <td>{{ sortie.nbMaxInscriptions }}</td>
-            <td>remplir etat</td>
-            <td>remplir inscrit</td>
-            <td>remplir organisateur</td>
-            <td>remplir actions</td>
-        </tr>
-
-        {% endfor %}
-    </table>
+{#    #}
+{#    <table>#}
+{#        <tr>#}
+{#            <th>Nom de la sortie</th>#}
+{#            <th>Date de la sortie</th>#}
+{#            <th>Clôture</th>#}
+{#            <th>Inscrits/Places</th>#}
+{#            <th>Etat<th>#}
+{#            <th>Inscrit</th>#}
+{#            <th>Organisateur</th>#}
+{#            <th>Actions</th>#}
+{#        {% for sortie in sorties %}#}
+{#            <td>{{ sortie.nom }}</td>#}
+{#            <td>{{ sortie.dateHeureDebut | date('d/m/Y - H:i') }}</td>#}
+{#            <td>{{ sortie.dateLimiteInscription | date('d/m/Y') }}</td>#}
+{#            <td>{{ sortie.nbMaxInscriptions }}</td>#}
+{#            <td>{{ sortie.etat.libelle }}</td>#}
+{#            <td>remplir inscrit</td>#}
+{#            <td>{{ sortie.organisateur.username }}</td>#}
+{#            <td>remplir actions</td>#}
+{#        </tr>#}
+{#        {% endfor %}#}
+{#    </table>#}
 
 
 
