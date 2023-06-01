@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-{{ parent()  }} | Detail
+{{ parent()  }} | Détail
 {% endblock %}
 
 {% block body %}
@@ -11,8 +11,8 @@
         <div>
             <img src="{{ asset('img/profilePictures/' ~ utilisateur.photo) }}" alt="{{ utilisateur.username }}">
         </div>
-        <h3>{{ utilisateur.nom }} {{ utilisateur.prenom }}</h3>
-        <div> Téléphone : {{ utilisateur.telephone }}</div>
+        <h3>{{ utilisateur.prenom }} {{ utilisateur.nom }}</h3>
+        <div>Téléphone : {{ utilisateur.telephone }}</div>
         <div> Email : {{ utilisateur.email }}</div>
         <div> campus : {{ utilisateur.campus.nom }}</div>
     </div>

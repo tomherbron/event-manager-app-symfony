@@ -22,20 +22,30 @@ class UtilisateurType extends AbstractType
             ->add('username', TextType::class, [
                 'label' => 'Pseudo :'
             ])
-            ->add('nom', TextType::class)
-            ->add('prenom', TextType::class)
-            ->add('telephone', TextType::class)
-            ->add('email', TextType::class)
-            ->add('password', PasswordType::class,)
+            ->add('nom', TextType::class,[
+                'label'=> 'Nom :'
+            ])
+            ->add('prenom', TextType::class,[
+                'label'=> 'Prénom :'
+            ])
+            ->add('telephone', TextType::class,[
+                'label'=> 'Téléphone :'
+            ])
+            ->add('email', TextType::class,[
+                'label'=> 'email :'
+            ])
+            ->add('password', PasswordType::class)
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'Le mot de passe doit correspondre.',
                 'options' => ['attr' => ['class' => 'password-field']],
                 'required' => true,
-                'first_options'  => ['label' => 'password'],
-                'second_options' => ['label' => 'Repeat password'],
+                'first_options'  => ['label' => 'Mot de passe :'],
+                'second_options' => ['label' => 'Confirmation mot de passe :']
+                ,
             ])
             ->add('campus', EntityType::class,[
+                'label'=>'Campus :',
                 'class'=>Campus::class,
                 'choice_label'=>'nom',
                 'query_builder'=>function(CampusRepository $campusRepository){
@@ -46,6 +56,7 @@ class UtilisateurType extends AbstractType
 
                 ])
             ->add('photo', FileType::class, [
+                'label'=>'photo :',
                 'mapped'=>false,
                 'required'=>false,
             ])

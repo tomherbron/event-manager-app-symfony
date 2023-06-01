@@ -13,9 +13,13 @@ a{
     color:black;
 
 }
+
+
 a:hover{
     color:lightslategray;
 }
+
+
 .nav {
     display: flex;
     flex-direction: row;
@@ -52,7 +56,16 @@ a:hover{
     background-color: red
 }
 
+
+.link_button {
+    border: 2px solid black;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 30% 5%;
 /*Barre de navigation */
+
+
+}
 
 nav ul {
     display: flex;
