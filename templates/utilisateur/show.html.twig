@@ -20,7 +20,9 @@
     <br>
     <br>
     <div>
+        {% if app.user.id == utilisateur.id %}
         <a class="link_button" href="{{ path('utilisateur_update', {'id':utilisateur.id }) }}">Modifier</a>
+         {% endif %}
     </div>
 
 {% endblock %}
