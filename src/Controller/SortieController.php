@@ -103,4 +103,9 @@ public function show(int $id, SortieRepository $sortieRepository) : Response
 
     }
 
+    public function publish(Request $request, int $id, SortieRepository $sortieRepository) : Response
+    {
+
+    }
+
 }
