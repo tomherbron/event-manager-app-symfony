@@ -1,53 +1,51 @@
-{#<nav class="navbar bg-dark border-bottom border-bottom-dark" data-bs-theme="dark" >#}
-
-{#    <ul>#}
-{#        <li><a href="{{ path('main_home') }}">Accueil</a></li>#}
-{#        {% if app.user %}#}
-{#            <li><a href="{{  path('utilisateur_show', {'id': app.user.id})  }}">Profil</a></li>#}
-{#            <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>#}
-{#            <p>Bonjour {{ app.user.prenom }} !</p>#}
-{#        {% else %}#}
-{#            <li><a href="{{ path('app_login') }}">Connexion</a></li>#}
-{#        {% endif %}#}
-{#    </ul>#}
-{#</nav>#}
-
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-sm bg-body-tertiary" data-bs-theme="dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{{ asset('img/logo.png') }}"></a>
+
+        <a class="navbar-brand " href="{{ path('main_home') }}">
+            <img src="{{ asset('img/logo_petit.png') }}" alt="Eni Event" class="max-width:20%">
+        </a>
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ path('main_home') }}">Accueil</a>
-                </li>
-                {% if app.user %}
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{  path('utilisateur_show', {'id': app.user.id})  }}">Profil</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ path('app_logout') }}">Déconnexion</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Sorties</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </li>
-                {% else %}
-                <li class="nav-item">
-                <a href="{{ path('app_login') }}">Connexion</a>
-                </li>
-                {% endif %}
+            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+
+                <div class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ path('main_home') }}">Accueil</a>
+                    </li>
+
+                    {% if app.user %}
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{  path('utilisateur_show', {'id': app.user.id})  }}">Profil</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Sorties</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ path('app_logout') }}">Déconnexion</a>
+                        </li>
+
+                    {% else %}
+                        <li class="nav-item" >
+                            <a class="nav-link active" aria-current="page" href="{{ path('app_login') }}">Connexion</a>
+                        </li>
+                    {% endif %}
+
+                </div>
             </ul>
+
         </div>
+    </div>
 </nav>
-
-
-
-
