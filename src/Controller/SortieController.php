@@ -123,9 +123,25 @@ class SortieController extends AbstractController
 
     }
 
-    #[Route('/subscribe/{id}', name: 'update', requirements: ["id" => "\d+"])]
-    public function subscribe(Request $request, Utilisateur $user, int $id, SortieRepository $sortieRepository, UtilisateurRepository $utilisateurRepository)
+    #[Route('/subscribe/{id}', name: 'subscribe', requirements: ["id" => "\d+"])]
+    public function subscribe(int $id, SortieRepository $sortieRepository, UtilisateurRepository $utilisateurRepository) : Response
     {
+        $user = $utilisateurRepository->findBy([$this->getUser()->getUsername()]);
+        dd($user);
+
+        $sortie = $sortieRepository->find($id);
+
+        $inscriptions = $user->getSorties();
+        foreach ($inscriptions as $sortieInscrite){
+
+            if ($sortieInscrite->getId() != $sortie->getId()){
+                $user->addSortie($sortie);
+                $utilisateurRepository->save($user, true);
+                $this->addFlash('success', 'Inscription validée');
+                return $this->redirectToRoute('main_home');
+
+            }
+        }
 
 
 

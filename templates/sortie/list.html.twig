@@ -30,7 +30,10 @@
                     <td>{{ sortie.etat.libelle }}</td>
                     <td>{{ sortie.nom }}</td>
                     <td><a href="{{ path('utilisateur_show', {'id':sortie.organisateur.id }) }}">{{ sortie.organisateur.username }}</a></td>
-                    <td><a href="{{ path('sortie_show', {'id':sortie.id }) }}">Afficher</a></td>
+                    <td>
+                        <a href="{{ path('sortie_show', {'id':sortie.id }) }}">Afficher</a>
+                        <a href="{{ path('sortie_subscribe', {'id':sortie.id }) }}">S'inscrire</a>
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>
