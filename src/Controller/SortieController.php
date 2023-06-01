@@ -103,8 +103,14 @@ public function show(int $id, SortieRepository $sortieRepository) : Response
 
     }
 
-    public function publish(Request $request, int $id, SortieRepository $sortieRepository) : Response
+    public function publish(Request $request, int $id, SortieRepository $sortieRepository, EtatRepository $etatRepository) : Response
     {
+        $sortie = $sortieRepository->find($id);
+        $sortie->setEtat($etatRepository->find('2'));
+        $sortieRepository->save($sortie, true);
+
+        $this->addFlash('success', 'Sortie publiée.');
+        return $this->redirectToRoute('main_home');
 
     }
 
