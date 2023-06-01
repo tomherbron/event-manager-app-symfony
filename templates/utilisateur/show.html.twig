@@ -5,18 +5,21 @@
 {% endblock %}
 
 {% block body %}
-    <h2> Informations concernant {{ utilisateur.prenom }}</h2>
-<section>
-    <div class ="utilisateur-infos">
-        <div>
-            <img src="{{ asset('img/profilePictures/' ~ utilisateur.photo) }}" alt="{{ utilisateur.username }}">
+    <h2> {{ utilisateur.username }} | Profil </h2>
+    <section>
+        <div class ="utilisateur-infos">
+            <div>
+                <img src="{{ asset('img/profilePictures/' ~ utilisateur.photo) }}" alt="{{ utilisateur.username }}">
+            </div>
+            <h3>{{ utilisateur.prenom }} {{ utilisateur.nom }}</h3>
+            <div>Téléphone : {{ utilisateur.telephone }}</div>
+            <div> E-mail : {{ utilisateur.email }}</div>
+            <div> Campus : {{ utilisateur.campus.nom }}</div>
         </div>
-        <h3>{{ utilisateur.prenom }} {{ utilisateur.nom }}</h3>
-        <div>Téléphone : {{ utilisateur.telephone }}</div>
-        <div> E-mail : {{ utilisateur.email }}</div>
-        <div> Campus : {{ utilisateur.campus.nom }}</div>
-    </div>
+    </section>
+    <section>
+        <a class="link_button" href="{{ path('utilisateur_update', {'id':utilisateur.id }) }}">Modifier</a>
+    </section>
 
-</section>
 
 {% endblock %}
