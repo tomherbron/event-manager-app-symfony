@@ -51,7 +51,7 @@ class SortieController extends AbstractController
         $sortie = $sortieRepository->find($id);
 
         return $this->render('sortie/list.html.twig', [
-            'sorties'=>$sortie
+            'sorties' => $sortie
         ]);
 
     }
