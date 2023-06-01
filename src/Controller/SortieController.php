@@ -46,10 +46,10 @@ class SortieController extends AbstractController
     }
 
     #[Route('/list', name:'list')]
-    public function list(int $id, SortieRepository $sortieRepository) : Response
+    public function list(SortieRepository $sortieRepository) : Response
     {
         ##Renvoyer la liste des sorties
-        $sortie = $sortieRepository->find($id);
+        $sortie = $sortieRepository->findBy([],["nom"=>"ASC"]);
 
         return $this->render('sortie/list.html.twig', [
             'sorties' => $sortie
