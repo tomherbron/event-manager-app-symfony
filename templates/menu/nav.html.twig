@@ -1,6 +1,6 @@
 <nav class = "nav">
     <ul>
-        <li><a href="">Accueil</a></li>
+        <li><a href="{{ path('main_home') }}">Accueil</a></li>
         {% if app.user %}
             <li><a href="{{  path('utilisateur_update', {'id': app.user.id})  }}">Profil</a></li>
             <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>

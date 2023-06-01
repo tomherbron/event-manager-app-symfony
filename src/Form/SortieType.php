@@ -17,6 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -27,27 +28,39 @@ class SortieType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom', TextType::class)
+            ->add('nom', TextType::class, [
+                'label' => 'Nom de la sortie : '
+            ])
             ->add('dateHeureDebut', DateTimeType::class, [
                 'html5' => true,
-                'widget' => 'single_text'
-            ] )
-            ->add('duree')
+                'widget' => 'single_text',
+                'label' => 'Date et heure de début : '
+            ])
+            ->add('duree', NumberType::class, [
+                'label' => 'Durée de la sortie : '
+            ])
             ->add('dateLimiteInscription', DateType::class,  [
                 'html5' => true,
-                'widget' => 'single_text'
+                'widget' => 'single_text',
+                'label' => 'Date limite d\'inscription :'
             ])
-            ->add('nbMaxInscriptions')
-            ->add('infos', TextareaType::class)
+            ->add('nbMaxInscriptions', NumberType::class, [
+                'label' => 'Nombre de participants : '
+            ])
+            ->add('infos', TextareaType::class, [
+                'label' => 'Informations : '
+            ])
             ->add('campus', EntityType::class, [
                 'class' => Campus::class,
                 'choice_label' => 'nom',
+                'label' => 'Campus :',
                 'query_builder' => function(CampusRepository $repository){
                     return $repository->createQueryBuilder('c');
                 }
             ])
             ->add('lieu', EntityType::class, [
                 'class' => Lieu::class,
+                'label' => 'Lieu : ',
                 'choice_label' => 'nom'
             ])
         ;
