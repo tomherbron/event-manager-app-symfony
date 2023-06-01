@@ -32,7 +32,7 @@ class UtilisateurType extends AbstractType
                 'label'=> 'Téléphone :'
             ])
             ->add('email', TextType::class,[
-                'label'=> 'email :'
+                'label'=> 'E-mail :'
             ])
             ->add('password', PasswordType::class)
             ->add('password', RepeatedType::class, [
@@ -56,7 +56,7 @@ class UtilisateurType extends AbstractType
 
                 ])
             ->add('photo', FileType::class, [
-                'label'=>'photo :',
+                'label'=>'Photo :',
                 'mapped'=>false,
                 'required'=>false,
             ])
