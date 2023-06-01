@@ -36,6 +36,7 @@ class SortieController extends AbstractController
             );
 
             $sortieRepository->save($newSortie, true);
+            $this->addFlash('success', 'Sortie créee avec succès.');
             return $this->redirectToRoute('main_home');
         }
 
@@ -55,4 +56,38 @@ class SortieController extends AbstractController
         ]);
 
     }
+
+    #[Route('/update/{id}', name: 'update', requirements: ["id" => "\d+"])]
+    public function edit(Request $request, int $id, SortieRepository $sortieRepository): Response
+    {
+
+        $sortie = $sortieRepository->find($id);
+        $sortieForm = $this->createForm(SortieType::class, $sortie);
+
+        $sortieForm->handleRequest($request);
+
+        if ($sortieForm->isSubmitted()) {
+            $sortieRepository->save($sortie, true);
+            $this->addFlash('success', 'Sortie modifiée avec succès.');
+            return $this->redirectToRoute('main_home');
+        };
+
+        return $this->render('sortie/update.html.twig', [
+            'sortieForm' => $sortieForm->createView()
+        ]);
+
+    }
+
+    #[Route('/delete/{id}', name: 'delete', requirements: ["id" => "\d+"])]
+    public function delete(Request $request, int $id, SortieRepository $sortieRepository) : Response
+    {
+
+        $sortie = $sortieRepository->find($id);
+        $sortieRepository->remove($sortie, true);
+
+        $this->addFlash('success', 'Sortie supprimée avec succès.');
+        return $this->redirectToRoute('main_home');
+
+    }
+
 }
