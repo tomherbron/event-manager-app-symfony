@@ -103,6 +103,7 @@ public function show(int $id, SortieRepository $sortieRepository) : Response
 
     }
 
+    #[Route('/publish/{id}', name: 'publish', requirements: ["id" => "\d+"])]
     public function publish(Request $request, int $id, SortieRepository $sortieRepository, EtatRepository $etatRepository) : Response
     {
         $sortie = $sortieRepository->find($id);

@@ -39,11 +39,9 @@ class UtilisateurController extends AbstractController
     {
 
         $utilisateur = $utilisateurRepository->find($id);
-
         $utilisateurForm = $this->createForm(UtilisateurType::class, $utilisateur);
 
         $utilisateurForm->handleRequest($request);
-
         $this->encoder = $encoder;
 
         if ($utilisateurForm->isSubmitted() && $utilisateurForm->isValid()) {
@@ -64,11 +62,8 @@ class UtilisateurController extends AbstractController
             }
 
             $utilisateurRepository->save($utilisateur, true);
-
             return $this->redirectToRoute('utilisateur_show',
                 ['id' => $utilisateur->getId()]);
-
-
         }
 
         return $this->render('utilisateur/update.html.twig', [
@@ -76,4 +71,9 @@ class UtilisateurController extends AbstractController
             'utilisateurForm' => $utilisateurForm->createView()
         ]);
     }
+
+    public function subscribe(){
+
+    }
+
 }
