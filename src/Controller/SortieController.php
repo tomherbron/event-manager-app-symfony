@@ -57,6 +57,18 @@ class SortieController extends AbstractController
 
     }
 
+    #[Route('/detail/{id}', name:'show', requirements: ["id"=> "\d+"])]
+public function show(int $id, SortieRepository $sortieRepository) : Response
+    {
+        $sortie = $sortieRepository->find($id);
+
+        if (!$sortie){
+            throw $this->createNotFoundException("Pas de sortie trouvée !");
+        }
+        return $this->render('sortie/show.html.twig',['sortie'=>$sortie]);
+    }
+
+
     #[Route('/update/{id}', name: 'update', requirements: ["id" => "\d+"])]
     public function edit(Request $request, int $id, SortieRepository $sortieRepository): Response
     {
