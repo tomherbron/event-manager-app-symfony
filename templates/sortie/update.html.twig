@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}
+    {{ parent() }} | Modifier sortie
+{% endblock %}
+
 {% block body %}
     {% embed 'views/form/default_form.html.twig' with {'form' : sortieForm} %}
         {% block h2 %} ENI Events | Modifier une sortie {% endblock %}
