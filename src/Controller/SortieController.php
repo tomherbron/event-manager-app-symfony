@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Sortie;
+use App\Entity\Utilisateur;
 use App\Form\SortieType;
 use App\Repository\EtatRepository;
 use App\Repository\SortieRepository;
+use App\Repository\UtilisateurRepository;
 use phpDocumentor\Reflection\Types\This;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -116,8 +118,17 @@ class SortieController extends AbstractController
             return $this->redirectToRoute('main_home');
         }
 
-        $this->addFlash('error', 'La sortie a déjà été publiée');
+        $this->addFlash('error', 'La sortie est déjà '. $sortie->getEtat()->getLibelle() . '.');
         return $this->redirectToRoute('main_home');
+
+    }
+
+    #[Route('/subscribe/{id}', name: 'update', requirements: ["id" => "\d+"])]
+    public function subscribe(Request $request, Utilisateur $user, int $id, SortieRepository $sortieRepository, UtilisateurRepository $utilisateurRepository)
+    {
+
+
+
 
     }
 

@@ -72,8 +72,4 @@ class UtilisateurController extends AbstractController
         ]);
     }
 
-    public function subscribe(){
-
-    }
-
 }
