@@ -10,6 +10,8 @@
     {{ form_start(utilisateurForm) }}
     {{ form_widget(utilisateurForm) }}
     <button type="submit" >Enregistrer</button>
+    <button href="{{ path('utilisateur_show', {'id':utilisateur.id }) }}">Annuler</button>
+
     {{ form_end(utilisateurForm) }}
 
 {% endblock %}
