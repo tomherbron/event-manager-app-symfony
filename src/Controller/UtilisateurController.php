@@ -64,7 +64,6 @@ class UtilisateurController extends AbstractController
             }
 
             $utilisateurRepository->save($utilisateur, true);
-            dump($utilisateur);
 
             return $this->redirectToRoute('utilisateur_show',
                 ['id' => $utilisateur->getId()]);

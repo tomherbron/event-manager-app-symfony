@@ -4,6 +4,7 @@
         {% if app.user %}
             <li><a href="{{  path('utilisateur_show', {'id': app.user.id})  }}">Profil</a></li>
             <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+            <p>Bonjour {{ app.user.prenom }} !</p>
         {% else %}
             <li><a href="{{ path('app_login') }}">Connexion</a></li>
         {% endif %}
