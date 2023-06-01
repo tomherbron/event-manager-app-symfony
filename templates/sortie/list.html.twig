@@ -8,15 +8,38 @@
 {% block body %}
     <h2>Liste des sorties</h2>
 
-    <section>
+    <table>
+        <tr>
+            <th>  Nom de la sortie  </th>
+            <th>  Date de la sortie  </th>
+            <th>  Clôture  </th>
+            <th>  Inscrits/Places  </th>
+            <th>  Etat  </th>
+            <th>  Inscrit  </th>
+            <th>  Organisateur  </th>
+            <th>  Actions  </th>
+        </tr>
+
+
         {% for sortie in sorties %}
-            <a href="{{ path('sortie_list'{'id' : list.id})}}"><p>{{ sortie }}</p></a>
+        <tr>
+            <td>{{ sortie.nom }}</td>
+            <td>{{ sortie.dateHeureDebut | date('d/m/Y - H:i') }}</td>
+            <td>{{ sortie.dateLimiteInscription | date('d/m/Y') }}</td>
+            <td>{{ sortie.nbMaxInscriptions }}</td>
+            <td>A FAIRE</td>
+            <td>empty</td>
+            <td>empty</td>
+            <td>empty</td>
+        </tr>
+
         {% endfor %}
-
-    </section>
-
+    </table>
 
 
-    {% endfor %}
+
+
+
+
 {% endblock %}
 
