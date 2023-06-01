@@ -28,7 +28,9 @@
         {% if app.user.id == sortie.organisateur.id %}
         <a class="link_button" href="{{ path('sortie_update', {'id':sortie.id }) }}">Modifier</a>
         <a class="link_button" onclick="return confirm('Êtes vous sûr de supprimer cette sortie?')" href="{{ path('sortie_delete', {'id':sortie.id }) }}">Supprimer</a>
+            {% if sortie.etat.libelle == 'Créée'  %}
         <a class="link_button" onclick="return confirm('Êtes vous sûr de vouloir publier cette sortie?')" href="{{ path('sortie_publish', {'id':sortie.id }) }}">Publier</a>
+                {% endif %}
         {% endif %}
     </section>
 
