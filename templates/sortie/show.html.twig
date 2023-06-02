@@ -34,5 +34,31 @@
         {% endif %}
     </section>
 
+    <section>
+        <h2>Liste des participants</h2>
+        <div class="table-responsive text-white">
+            <table class="table table-striped align-middle  table-borderless">
+                <thead >
+                <tr>
+                    <th>Pseudo</th>
+                    <th>Nom</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for u in sortie.utilisateurs %}
+                        <tr>
+                            <td>{{ u.username }}</td>
+                            <td>{{ u.nom }}</td>
+
+                        </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+
+    </section>
+
 {% endblock %}
 
