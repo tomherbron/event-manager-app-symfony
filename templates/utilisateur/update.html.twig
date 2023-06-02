@@ -5,12 +5,15 @@
 {% endblock %}
 
 {% block body %}
-    <h2>{{ utilisateur.username }} | Modifier le profil</h2>
+
+    <h2 id="utilisateur-show-profil" class ="text-uppercase" style="display: inline-block"> {{ utilisateur.username }} </h2>
+    <h2 style="display: inline-block"> | Modifier le Profil </h2>
 
     {{ form_start(utilisateurForm) }}
     {{ form_widget(utilisateurForm) }}
-    <button type="submit" >Enregistrer</button>
-    <button href="{{ path('utilisateur_show', {'id':utilisateur.id }) }}">Annuler</button>
+    <button class="btn btn-outline-light rounded-0" type="submit" >Enregistrer</button>
+    <button class="btn btn-outline-light rounded-0" href="{{ path('utilisateur_show', {'id':utilisateur.id }) }}">Annuler</button>
+
 
     {{ form_end(utilisateurForm) }}
 

@@ -182,10 +182,7 @@ body {
 }
 
 
-header{
-    font-family: 'Playfair Display', serif;
 
-}
 
 table tr td, table tr th{
     background-color: rgba(255, 252, 252, 0.37) !important;
@@ -193,7 +190,18 @@ table tr td, table tr th{
 
 }
 
-body h1, body h2, body h3, body h4, body h5, body h6{
+table tr td{
+    color : #FFFFFF;
+}
+
+main {
+    padding: 5em 10em;
+    font-family: 'Playfair Display', serif;
+    color : #FFFFFF;
+
+}
+
+body {
     font-family: 'Playfair Display', serif;
     color: #FFFFFF;
 }
@@ -201,12 +209,26 @@ body h1, body h2, body h3, body h4, body h5, body h6{
 body a, body p, body text {
     font-family: 'Roboto', sans-serif;
     color: #FFFFFF;
-
-
 }
 
 .img-max {
-    /*max-width: 50em;*/
-    width :10em;
+    width :20em;
     height: 5em;
 }
+
+#utilisateur-show-profil{
+    font-size: 3em;
+}
+
+button{
+    font-family: 'Playfair Display', serif;
+    color: #FFFFFF;
+}
+
+footer{
+    font-family: 'Playfair Display', serif;
+
+}
+
+
+
