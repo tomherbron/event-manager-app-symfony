@@ -28,7 +28,7 @@ class SortieController extends AbstractController
 
         $sortieForm->handleRequest($request);
 
-        if ($sortieForm->isSubmitted() && $sortieForm->isValid()){
+        if ($sortieForm->isSubmitted() && $sortieForm->isValid()) {
 
             $newSortie->setOrganisateur($user);
             $campus = $sortieForm->get('campus')->getData();
@@ -47,11 +47,11 @@ class SortieController extends AbstractController
         ]);
     }
 
-    #[Route('/list', name:'list')]
-    public function list(SortieRepository $sortieRepository) : Response
+    #[Route('/list', name: 'list')]
+    public function list(SortieRepository $sortieRepository): Response
     {
 
-        $sortie = $sortieRepository->findBy([],["nom"=>"ASC"]);
+        $sortie = $sortieRepository->findBy([], ["nom" => "ASC"]);
 
 
         return $this->render('sortie/list.html.twig', [
@@ -60,15 +60,15 @@ class SortieController extends AbstractController
 
     }
 
-    #[Route('/detail/{id}', name:'show', requirements: ["id"=> "\d+"])]
-    public function show(int $id, SortieRepository $sortieRepository) : Response
+    #[Route('/detail/{id}', name: 'show', requirements: ["id" => "\d+"])]
+    public function show(int $id, SortieRepository $sortieRepository): Response
     {
         $sortie = $sortieRepository->find($id);
 
-        if (!$sortie){
+        if (!$sortie) {
             throw $this->createNotFoundException("Pas de sortie trouvée !");
         }
-        return $this->render('sortie/show.html.twig',['sortie'=>$sortie]);
+        return $this->render('sortie/show.html.twig', ['sortie' => $sortie]);
     }
 
 
@@ -94,7 +94,7 @@ class SortieController extends AbstractController
     }
 
     #[Route('/delete/{id}', name: 'delete', requirements: ["id" => "\d+"])]
-    public function delete(Request $request, int $id, SortieRepository $sortieRepository) : Response
+    public function delete(Request $request, int $id, SortieRepository $sortieRepository): Response
     {
 
         $sortie = $sortieRepository->find($id);
@@ -106,11 +106,11 @@ class SortieController extends AbstractController
     }
 
     #[Route('/publish/{id}', name: 'publish', requirements: ["id" => "\d+"])]
-    public function publish(Request $request, int $id, SortieRepository $sortieRepository, EtatRepository $etatRepository) : Response
+    public function publish(Request $request, int $id, SortieRepository $sortieRepository, EtatRepository $etatRepository): Response
     {
         $sortie = $sortieRepository->find($id);
 
-        if ($sortie->getEtat()->getId() == '1'){
+        if ($sortie->getEtat()->getId() == '1') {
             $sortie->setEtat($etatRepository->find('2'));
             $sortieRepository->save($sortie, true);
 
@@ -118,34 +118,49 @@ class SortieController extends AbstractController
             return $this->redirectToRoute('main_home');
         }
 
-        $this->addFlash('error', 'La sortie est déjà '. $sortie->getEtat()->getLibelle() . '.');
+        $this->addFlash('error', 'La sortie est déjà ' . $sortie->getEtat()->getLibelle() . '.');
         return $this->redirectToRoute('main_home');
 
     }
 
     #[Route('/subscribe/{id}', name: 'subscribe', requirements: ["id" => "\d+"])]
-    public function subscribe(int $id, SortieRepository $sortieRepository, UtilisateurRepository $utilisateurRepository) : Response
+    public function subscribe(int $id, SortieRepository $sortieRepository, UtilisateurRepository $utilisateurRepository): Response
     {
-        $user = $utilisateurRepository->findBy([$this->getUser()->getUsername()]);
-        dd($user);
+        $user = $utilisateurRepository->findOneBy(['username' => $this->getUser()->getUserIdentifier()]);
+
 
         $sortie = $sortieRepository->find($id);
 
-        $inscriptions = $user->getSorties();
-        foreach ($inscriptions as $sortieInscrite){
-
-            if ($sortieInscrite->getId() != $sortie->getId()){
-                $user->addSortie($sortie);
-                $utilisateurRepository->save($user, true);
-                $this->addFlash('success', 'Inscription validée');
-                return $this->redirectToRoute('main_home');
-
-            }
+        //Ya peut-être moyen que ça fonctionne
+        //On vérifie que l'utilisateur qui veut s'inscrire n'est pas déjà inscrit
+        // S'il valide la condition on l'inscrit dans la sortie
+        if (!$sortie->getUtilisateurs()->contains($this->getUser())) {
+            $user->addSortie($sortie);
+            $utilisateurRepository->save($user, true);
+            $this->addFlash('success', 'Inscription validée');
+            return $this->redirectToRoute('sortie_show', ['id' => $sortie->getId()]);
         }
+
+
+//        $inscriptions = $user->getSorties();
+//        foreach ($inscriptions as $sortieInscrite) {
+//
+//            if ($sortieInscrite->getId() != $sortie->getId()) {
+//                $user->addSortie($sortie);
+//                $utilisateurRepository->save($user, true);
+//                $this->addFlash('success', 'Inscription validée');
+//                return $this->redirectToRoute('main_home');
+//
+//            }
+//    }
+
+    return $this->redirectToRoute('sortie_list');
+
+    }
 
 
 
 
     }
 
-}
+

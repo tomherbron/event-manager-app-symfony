@@ -30,12 +30,7 @@ class Sortie
         type: 'integer',
         message: 'La valeur {{ value }}  doit être un {{ type }}.',
     )]
-    #[Assert\Length(
-        min: 10,
-        max: 300,
-        minMessage: "Minimum {{ limit }} minutes",
-        maxMessage: "Maximum {{ limit }} minutes"
-    )]
+
 
     #[ORM\Column]
     private ?int $duree = null;
