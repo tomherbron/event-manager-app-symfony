@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UtilisateurRepository::class)]
 #[UniqueEntity(fields: ['username'], message: 'There is already an account with this username')]
@@ -20,6 +21,13 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank(message: "Pseudo obligatoire !")]
+    #[Assert\Length(
+        min: 2,
+        max: 180,
+        minMessage: "Minimum {{ limit }} character",
+        maxMessage: "Maximum {{ limit }} character"
+    )]
     #[ORM\Column(length: 180, unique: true)]
     private ?string $username = null;
 
@@ -30,17 +38,40 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Assert\NotBlank(message: "Mot de passe obligatoire !")]
     private ?string $password = null;
 
+    #[Assert\NotBlank(message: "Nom obligatoire !")]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: "Minimum {{ limit }} character",
+        maxMessage: "Maximum {{ limit }} character"
+    )]
     #[ORM\Column(length: 50)]
     private ?string $nom = null;
 
+    #[Assert\NotBlank(message: "Prénom obligatoire !")]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: "Minimum {{ limit }} character",
+        maxMessage: "Maximum {{ limit }} character"
+    )]
     #[ORM\Column(length: 50)]
     private ?string $prenom = null;
 
+    #[Assert\NotBlank(message: "Téléphone obligatoire !")]
+    #[Assert\Length(
+        min: 10,
+        max: 10,
+        exactMessage:"veuillez saisir 10 numéros !"
+    )]
     #[ORM\Column(length: 10)]
     private ?string $telephone = null;
 
+
+    #[Assert\NotBlank(message: "Email obligatoire !")]
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
