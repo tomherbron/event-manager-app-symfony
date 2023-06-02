@@ -6,9 +6,9 @@
 
 {% block body %}
     <h2>Liste des sorties</h2>
-    <div class="table-responsive">
-        <table class="table table-striped align-middle text-opacity-100  ">
-            <thead class="table-tra">
+    <div class="table-responsive text-white">
+        <table class="table table-striped align-middle  table-borderless">
+            <thead >
             <tr>
                 <th>Nom de la sortie</th>
                 <th>Date de la sortie</th>
@@ -39,35 +39,6 @@
             </tbody>
         </table>
     </div>
-
-{#    #}
-{#    <table>#}
-{#        <tr>#}
-{#            <th>Nom de la sortie</th>#}
-{#            <th>Date de la sortie</th>#}
-{#            <th>Clôture</th>#}
-{#            <th>Inscrits/Places</th>#}
-{#            <th>Etat<th>#}
-{#            <th>Inscrit</th>#}
-{#            <th>Organisateur</th>#}
-{#            <th>Actions</th>#}
-{#        {% for sortie in sorties %}#}
-{#            <td>{{ sortie.nom }}</td>#}
-{#            <td>{{ sortie.dateHeureDebut | date('d/m/Y - H:i') }}</td>#}
-{#            <td>{{ sortie.dateLimiteInscription | date('d/m/Y') }}</td>#}
-{#            <td>{{ sortie.nbMaxInscriptions }}</td>#}
-{#            <td>{{ sortie.etat.libelle }}</td>#}
-{#            <td>remplir inscrit</td>#}
-{#            <td>{{ sortie.organisateur.username }}</td>#}
-{#            <td>remplir actions</td>#}
-{#        </tr>#}
-{#        {% endfor %}#}
-{#    </table>#}
-
-
-
-
-
 
 {% endblock %}
 

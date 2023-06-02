@@ -5,16 +5,21 @@
 {% endblock %}
 
 {% block body %}
-    <h2> {{ utilisateur.username }} | Profil </h2>
+
+    <h2 class ="text-uppercase" style="display: inline-block"> {{ utilisateur.username }} </h2>
+    <h2 style="display: inline-block"> | Profil </h2>
     <section>
         <div class ="utilisateur-infos">
             <div>
-                <img src="{{ asset('img/profilePictures/' ~ utilisateur.photo) }}" alt="{{ utilisateur.username }}">
+                <img class="img-fluid rounded-circle img-max" src="{{ asset('img/profilePictures/' ~ utilisateur.photo) }}" alt="{{ utilisateur.username }} ">
             </div>
             <h3>{{ utilisateur.prenom }} {{ utilisateur.nom }}</h3>
-            <div>Téléphone : {{ utilisateur.telephone }}</div>
-            <div> E-mail : {{ utilisateur.email }}</div>
-            <div> Campus : {{ utilisateur.campus.nom }}</div>
+
+            <div class="text-white">
+                <div>Téléphone : {{ utilisateur.telephone }}</div>
+                <div> E-mail : {{ utilisateur.email }}</div>
+                <div> Campus : {{ utilisateur.campus.nom }}</div>
+            </div>
         </div>
     </section>
     <br>

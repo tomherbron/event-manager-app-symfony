@@ -15,6 +15,7 @@
 /*}*/
 
 
+
 /*a:hover{*/
 /*    color:lightslategray;*/
 /*}*/
@@ -163,7 +164,7 @@ html, body {
 }
 
 body {
-    background: linear-gradient(-45deg, rgba(26, 46, 82, 0.73), rgba(31, 88, 128, 0.87), #23a6d5, #23d5ab);
+    background: linear-gradient(-45deg, rgba(0, 0, 0, 0.73), rgba(26, 46, 82, 0.73), rgba(31, 88, 128, 0.87), rgba(43, 102, 143, 0.87));
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
 }
@@ -180,10 +181,32 @@ body {
     }
 }
 
-hr {
+
+header{
+    font-family: 'Playfair Display', serif;
 
 }
 
-table{
+table tr td, table tr th{
+    background-color: rgba(255, 252, 252, 0.37) !important;
+    font-family: 'Roboto', sans-serif;
 
+}
+
+body h1, body h2, body h3, body h4, body h5, body h6{
+    font-family: 'Playfair Display', serif;
+    color: #FFFFFF;
+}
+
+body a, body p, body text {
+    font-family: 'Roboto', sans-serif;
+    color: #FFFFFF;
+
+
+}
+
+.img-max {
+    /*max-width: 50em;*/
+    width :10em;
+    height: 5em;
 }
