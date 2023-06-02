@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: SortieRepository::class)]
 class Sortie
@@ -16,21 +17,38 @@ class Sortie
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank(message: "Nom obligatoire !")]
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
+    #[Assert\NotBlank(message: "Nom obligatoire !")]
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateHeureDebut = null;
+
+    #[Assert\NotBlank(message: "Durée obligatoire !")]
+    #[Assert\Type(
+        type: 'integer',
+        message: 'La valeur {{ value }}  doit être un {{ type }}.',
+    )]
+    #[Assert\Length(
+        min: 10,
+        max: 300,
+        minMessage: "Minimum {{ limit }} minutes",
+        maxMessage: "Maximum {{ limit }} minutes"
+    )]
 
     #[ORM\Column]
     private ?int $duree = null;
 
+    #[Assert\NotBlank(message: "Date limite d'incription obligatoire !")]
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateLimiteInscription = null;
 
+    #[Assert\NotBlank(message: "Nombre d'inscrits maximum obligatoire !")]
     #[ORM\Column]
     private ?int $nbMaxInscriptions = null;
 
+    #[Assert\NotBlank(message: "Les infos de la sortie sont obligatoires !")]
     #[ORM\Column(type: Types::TEXT)]
     private ?string $infos = null;
 
