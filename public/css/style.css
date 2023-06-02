@@ -230,5 +230,9 @@ footer{
 
 }
 
+.encadrement-contenu{
+    border: 1px solid white; padding: 2em;
+}
+
 
 

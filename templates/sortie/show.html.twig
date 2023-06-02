@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block body %}
+<span class="encadrement-contenu">
 
     <h2> {{ sortie.nom}} </h2>
 
@@ -22,7 +23,8 @@
         <div><strong>Latitude : </strong>{{ sortie.lieu.latitude }}</div>
         <div><strong>Longitude : </strong>{{ sortie.lieu.longitude }}</div>
     </section>
-    <br>
+</span>
+
     <br>
     <section>
         {% if app.user.id == sortie.organisateur.id %}
@@ -33,8 +35,8 @@
                 {% endif %}
         {% endif %}
     </section>
-
-    <section>
+    <br>
+    <section class="encadrement-contenu">
         <h2>Liste des participants</h2>
         <div class="table-responsive text-white">
             <table class="table table-striped align-middle  table-borderless">

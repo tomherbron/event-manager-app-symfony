@@ -5,11 +5,20 @@
 {% endblock %}
 
 {% block body %}
-    {{ form_start(villeForm) }}
-    {{ form_widget(villeForm) }}
-    <button class="btn btn-outline-light rounded-0" type="submit" >Enregistrer</button>
-    {{ form_end(villeForm) }}
+
+    <span class="encadrement-contenu">
+        <h2>Ajouter une ville</h2>
+        <br>
+      {{ form_start(villeForm) }}
+        {{ form_widget(villeForm) }}
+        <br>
+        <button class="btn btn-outline-light rounded-0" type="submit" >Enregistrer</button>
+        {{ form_end(villeForm) }}
+    </span>
+
 {% endblock %}
+
+
 
 
 

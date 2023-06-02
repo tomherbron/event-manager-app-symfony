@@ -6,10 +6,16 @@
 
 
 {% block body %}
+<span class="encadrement-contenu">
+
+    <h2>Ajouter un campus</h2>
+    <br>
     {{ form_start(campusForm) }}
     {{ form_widget(campusForm) }}
+    <br>
     <button class="btn btn-outline-light rounded-0" type="submit" >Enregistrer</button>
     {{ form_end(campusForm) }}
+</span>
 {% endblock %}
 
 

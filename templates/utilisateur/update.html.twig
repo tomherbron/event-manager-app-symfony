@@ -7,14 +7,20 @@
 {% block body %}
 
     <h2 id="utilisateur-show-profil" class ="text-uppercase" style="display: inline-block"> {{ utilisateur.username }} </h2>
-    <h2 style="display: inline-block"> | Modifier le Profil </h2>
+
+    <span class="encadrement-contenu">
+
+    <h2 style="display: inline-block">Modifier le Profil </h2>
 
     {{ form_start(utilisateurForm) }}
+    <br>
+
+
     {{ form_widget(utilisateurForm) }}
     <button class="btn btn-outline-light rounded-0" type="submit" >Enregistrer</button>
     <button class="btn btn-outline-light rounded-0" href="{{ path('utilisateur_show', {'id':utilisateur.id }) }}">Annuler</button>
 
 
     {{ form_end(utilisateurForm) }}
-
+    </span>
 {% endblock %}
