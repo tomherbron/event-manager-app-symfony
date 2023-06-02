@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{{ parent() }} | ajout Campus
+{% endblock %}
+
+
+{% block body %}
+    {{ form_start(campusForm) }}
+    {{ form_widget(campusForm) }}
+    <button type="submit" >Enregistrer</button>
+    {{ form_end(campusForm) }}
+{% endblock %}
+
+
+
