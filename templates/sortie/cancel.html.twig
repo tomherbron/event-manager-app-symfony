@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} | Annuler une sortie
+{% endblock %}
+
+{% block body %}
+    {% embed 'views/form/default_form.html.twig' with {'form' : annulerSortieForm} %}
+        {% block h2 %} ENI Events | Annuler une sortie {% endblock %}
+        {% block buttonLabel %}Annuler {% endblock %}
+    {% endembed %}
+{% endblock %}
