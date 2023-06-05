@@ -35,7 +35,9 @@
                     <td><a href="{{ path('utilisateur_show', {'id':sortie.organisateur.id }) }}">{{ sortie.organisateur.username }}</a></td>
                     <td>
                         <a href="{{ path('sortie_show', {'id':sortie.id }) }}">Afficher</a>
+                        {% if sortie.dateLimiteInscription > date('now') %}
                         <a href="{{ path('sortie_subscribe', {'id':sortie.id }) }}">S'inscrire</a>
+                            {% endif %}
                     </td>
                 </tr>
                  {% endif %}
