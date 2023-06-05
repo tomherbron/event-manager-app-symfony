@@ -11,7 +11,7 @@
     <div class="table-responsive text-white encadrement-contenu">
 
         <table class="table table-striped align-middle  table-borderless">
-            <thead >
+            <thead>
             <tr>
                 <th id="tableau-donnees">Nom de la sortie</th>
                 <th id="tableau-donnees">Date de la sortie</th>
@@ -32,7 +32,11 @@
                         <td id="tableau-donnees">{{ sortie.dateLimiteInscription | date('d/m/Y') }}</td>
                         <td id="tableau-donnees">{{ sortie.utilisateurs.count }}/{{ sortie.nbMaxInscriptions }}</td>
                         <td id="tableau-donnees">{{ sortie.etat.libelle }}</td>
-                        <td id="tableau-donnees">{{ sortie.nom }}</td>
+                        {% if app.user.id in sortie.utilisateurs|map(user => user.id) %}
+                            <td id="tableau-donnees">X</td>
+                            {%else %}
+                            <td id="tableau-donnees"> </td>
+                        {% endif %}
                         <td>
                             <a  id="tableau-donnees" href="{{ path('utilisateur_show', {'id':sortie.organisateur.id }) }}">{{ sortie.organisateur.username }}</a>
                         </td>

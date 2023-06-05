@@ -59,10 +59,21 @@ class SortieController extends AbstractController
         $sorties = $sortieRepository->findAll();
         $dateDuJour = new DateTime();
 
-        foreach ($sorties as $sortie){
+
+        foreach ($sorties as $sortie) {
+            $minutesAAjouter = $sortie->getDuree();
+            $finSortie = clone $sortie->getDateHeureDebut();
+            $finSortie->modify("+{$minutesAAjouter} minutes");
+
             $dateCloture = $sortie->getDateLimiteInscription();
-            if ($dateDuJour > $dateCloture){
-                $sortie->setEtat($etatRepository->find(3));
+            if ($sortie->getEtat() !== $etatRepository->find(6)) {
+                if ($dateDuJour > $dateCloture && $dateDuJour < $sortie->getDateHeureDebut()) {
+                    $sortie->setEtat($etatRepository->find(3));
+                } elseif ($dateDuJour <= $finSortie && $dateDuJour >= $sortie->getDateHeureDebut()) {
+                    $sortie->setEtat($etatRepository->find(4));
+                } elseif ($dateDuJour > $finSortie) {
+                    $sortie->setEtat($etatRepository->find(5));
+                }
             }
         }
 
@@ -115,7 +126,7 @@ class SortieController extends AbstractController
         $sortie = $sortieRepository->find($id);
 
         if ($sortie->getEtat()->getLibelle() != 'Activité en cours' || $sortie->getEtat()->getLibelle() != 'Passée' || $sortie->getEtat()->getLibelle() != 'Clôturée'
-        || $sortie->getEtat()->getLibelle() != 'Annulée'){
+            || $sortie->getEtat()->getLibelle() != 'Annulée') {
             $sortie = $sortieRepository->find($id);
             $sortieRepository->remove($sortie, true);
 
@@ -169,19 +180,19 @@ class SortieController extends AbstractController
 
         }
 
-    return $this->redirectToRoute('sortie_list');
+        return $this->redirectToRoute('sortie_list');
 
     }
 
     #[Route('/unsubscribe/{id}', name: 'unsubscribe', requirements: ["id" => "\d+"])]
-    public function unsubscribe(int $id, SortieRepository $sortieRepository, UtilisateurRepository $utilisateurRepository) : Response
+    public function unsubscribe(int $id, SortieRepository $sortieRepository, UtilisateurRepository $utilisateurRepository): Response
     {
         $user = $utilisateurRepository->findOneBy(['username' => $this->getUser()->getUserIdentifier()]);
         $sortie = $sortieRepository->find($id);
 
         $dateDuJour = new DateTime();
 
-        if ($sortie->getUtilisateurs()->contains($this->getUser()) && $sortie->getDateLimiteInscription() > $dateDuJour){
+        if ($sortie->getUtilisateurs()->contains($this->getUser()) && $sortie->getDateLimiteInscription() > $dateDuJour) {
             $user->removeSortie($sortie);
             $utilisateurRepository->save($user, true);
             $this->addFlash('success', 'Vous avez été désinscrit de cette sortie.');
@@ -194,8 +205,6 @@ class SortieController extends AbstractController
     }
 
 
-
-
-    }
+}
 
 
