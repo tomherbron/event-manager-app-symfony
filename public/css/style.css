@@ -1,3 +1,192 @@
+/*Mise en page générale*/
+
+    html, body {
+        width: 100%;
+        height:100%;
+        margin : 0;
+        padding : 0;
+    }
+
+    main {
+        padding: 5em 10em;
+        font-family: 'Geologica', sans-serif;
+        color : #FFFFFF;
+
+    }
+
+    body {
+        font-family: 'Geologica', sans-serif;
+        color: #FFFFFF;
+    }
+
+    a, p, text {
+        font-family: 'Roboto', sans-serif;
+        color: #FFFFFF;
+    }
+
+    /*Gestion des encadrements*/
+
+        .encadrement-contenu{
+            border: 1px solid white;
+            border-radius: 1em;
+            padding: 2em;
+
+        }
+
+
+/*Header & Footer*/
+
+    footer{
+        font-family: 'Geologica', sans-serif;
+        position: relative;
+    }
+
+    #list-navbar{
+        font-family: 'Geologica', sans-serif;
+        color: #FFFFFF;
+    }
+
+    /*header{*/
+    /*    font-family: 'Geologica', sans-serif;*/
+    /*    color: #FFFFFF;*/
+    /*}*/
+
+/*Gestion des buttons*/
+
+    button{
+        font-family: 'Geologica', sans-serif;
+        color: #fffcfc;
+    }
+
+/*Gestion du profil utilisateur*/
+
+    /*Taille maximale de l'image utilisateur*/
+
+        .img-max {
+            width :20em;
+            height: 5em;
+        }
+
+    /*Taille spécifique nom utilisateur*/
+
+        #utilisateur-show-profil{
+            font-size: 3em;
+        }
+
+/*Mise en page tableau*/
+
+    #tableau-donnees{
+        font-family: 'Roboto', sans-serif;
+        color : #FFFFFF
+
+    }
+    table tr td, table tr th{
+        background-color: rgba(255, 252, 252, 0.37) !important;
+    }
+
+
+
+/*Animation Background*/
+
+    .wrapper{
+        position:absolute;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: linear-gradient(90deg, rgba(2,0,.6,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+    }
+
+    .box div{
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        background-color: transparent;
+        border: 6px solid rgba(255,255,255,0.8) ;
+        border-radius: 1em;
+    }
+
+    .box div:nth-child(1){
+        top: 12%;
+        left: 42%;
+        animation: animate 10s linear infinite;
+    }
+
+    .box div:nth-child(2){
+        top: 70%;
+        left: 50%;
+        animation: animate 7s linear infinite;
+    }
+
+    .box div:nth-child(3){
+        top: 17%;
+        left: 6%;
+        animation: animate 9s linear infinite;
+    }
+
+    .box div:nth-child(4){
+        top: 20%;
+        left: 60%;
+        animation: animate 10s linear infinite;
+    }
+
+    .box div:nth-child(5){
+        top: 67%;
+        left: 10%;
+        animation: animate 6s linear infinite;
+    }
+
+    .box div:nth-child(6){
+        top: 80%;
+        left: 70%;
+        animation: animate 12s linear infinite;
+    }
+
+    .box div:nth-child(7){
+        top: 60%;
+        left: 80%;
+        animation: animate 15s linear infinite;
+    }
+
+    .box div:nth-child(8){
+        top: 32%;
+        left: 25%;
+        animation: animate 16s linear infinite;
+    }
+
+    .box div:nth-child(9){
+        top: 90%;
+        left: 25%;
+        animation: animate 9s linear infinite;
+    }
+
+    .box div:nth-child(10) {
+        top: 20%;
+        left: 80%;
+        animation: animate 5s linear infinite;
+    }
+
+    @keyframes animate {
+        0%{
+            transform: scale(0) translateY(0) rotate(0);
+            opacity:1
+        }
+        100%{
+            transform: scale(1.3) translateY(-90px) rotate(360deg);
+            opacity: 0;
+
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
 /*body{*/
 /*    font-family: 'Fira Sans', sans-serif;*/
 /*    background: #FFEEEE;  !* fallback for old browsers *!*/
@@ -157,175 +346,6 @@
 /*    flex-direction: row;*/
 /*    justify-content: center;*/
 /*}*/
-
-html, body {
-    width: 100%;
-    height:100%;
-    margin : 0;
-    padding : 0;
-}
-/*Animation Background*/
-
-.wrapper{
-    position:absolute;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background: linear-gradient(90deg, rgba(2,0,.6,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
-}
-
-.box div{
-    position: absolute;
-    width: 60px;
-    height: 60px;
-    background-color: transparent;
-    border: 6px solid rgba(255,255,255,0.8) ;
-}
-
-.box div:nth-child(1){
-    top: 12%;
-    left: 42%;
-    animation: animate 10s linear infinite;
-}
-
-.box div:nth-child(2){
-    top: 70%;
-    left: 50%;
-    animation: animate 7s linear infinite;
-}
-
-.box div:nth-child(3){
-    top: 17%;
-    left: 6%;
-    animation: animate 9s linear infinite;
-}
-
-.box div:nth-child(4){
-    top: 20%;
-    left: 60%;
-    animation: animate 10s linear infinite;
-}
-
-.box div:nth-child(5){
-    top: 67%;
-    left: 10%;
-    animation: animate 6s linear infinite;
-}
-
-.box div:nth-child(6){
-    top: 80%;
-    left: 70%;
-    animation: animate 12s linear infinite;
-}
-
-.box div:nth-child(7){
-    top: 60%;
-    left: 80%;
-    animation: animate 15s linear infinite;
-}
-
-.box div:nth-child(8){
-    top: 32%;
-    left: 25%;
-    animation: animate 16s linear infinite;
-}
-
-.box div:nth-child(9){
-    top: 90%;
-    left: 25%;
-    animation: animate 9s linear infinite;
-}
-
-.box div:nth-child(10) {
-    top: 20%;
-    left: 80%;
-    animation: animate 5s linear infinite;
-}
-
-@keyframes animate {
-    0%{
-        transform: scale(0) translateY(0) rotate(0);
-        opacity:1
-    }
-    100%{
-        transform: scale(1.3) translateY(-90px) rotate(360deg);
-        opacity: 0;
-
-    }
-}
-    
-
-
-/*body {*/
-/*    background: linear-gradient(-45deg, rgba(0, 0, 0, 0.73), rgba(26, 46, 82, 0.73), rgba(31, 88, 128, 0.87), rgba(43, 102, 143, 0.87));*/
-/*    background-size: 400% 400%;*/
-/*    animation: gradient 15s ease infinite;*/
-/*}*/
-
-/*@keyframes gradient {*/
-/*    0% {*/
-/*        background-position: 0 50%;*/
-/*    }*/
-/*    50% {*/
-/*        background-position: 100% 50%;*/
-/*    }*/
-/*    100% {*/
-/*        background-position: 0 50%;*/
-/*    }*/
-/*}*/
-
-
-
-
-table tr td, table tr th{
-    background-color: rgba(255, 252, 252, 0.37) !important;
-    font-family: 'Roboto', sans-serif;
-
-}
-
-table tr td{
-    color : #FFFFFF;
-}
-
-main {
-    padding: 5em 10em;
-    font-family: 'Crete Round', serif;
-    color : #FFFFFF;
-
-}
-
-body {
-    font-family: 'Crete Round', serif;
-    color: #FFFFFF;
-}
-
-body a, body p, body text {
-    font-family: 'Roboto', sans-serif;
-    color: #FFFFFF;
-}
-
-.img-max {
-    width :20em;
-    height: 5em;
-}
-
-#utilisateur-show-profil{
-    font-size: 3em;
-}
-
-button{
-    font-family: 'Crete Round', serif;
-    color: #FFFFFF;
-}
-
-footer{
-    font-family: 'Crete Round', serif;
-
-}
-
-.encadrement-contenu{
-    border: 1px solid white; padding: 2em;
-}
 
 
 

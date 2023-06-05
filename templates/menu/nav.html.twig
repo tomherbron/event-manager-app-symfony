@@ -15,16 +15,16 @@
                 <div class="navbar-nav me-auto mb-2 mb-lg-0">
 
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ path('main_home') }}">Accueil</a>
+                        <a id="list-navbar" class="nav-link active" aria-current="page" href="{{ path('main_home') }}">Accueil</a>
                     </li>
 
                     {% if app.user %}
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{  path('utilisateur_show', {'id': app.user.id})  }}">Profil</a>
+                            <a id="list-navbar" class="nav-link active" aria-current="page" href="{{  path('utilisateur_show', {'id': app.user.id})  }}">Profil</a>
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Sorties</a>
+                            <a id="list-navbar" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Sorties</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="#">Action</a></li>
                                 <li><a class="dropdown-item" href="#">Another action</a></li>
@@ -34,25 +34,25 @@
                         </li>
 
                         <li class="nav-item ">
-                            <a class="nav-link active" aria-current="page" href="{{ path('app_logout') }}">Déconnexion</a>
+                            <a id="list-navbar" class="nav-link active" aria-current="page" href="{{ path('app_logout') }}">Déconnexion</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ path('sortie_add') }}">Ajouter une sortie</a>
+                            <a id="list-navbar" class="nav-link active" aria-current="page" href="{{ path('sortie_add') }}">Ajouter une sortie</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ path('app_register') }}">Inscrire un utilisateur</a>
+                            <a id="list-navbar" class="nav-link active" aria-current="page" href="{{ path('app_register') }}">Inscrire un utilisateur</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ path('ville_add') }}">Ajouter une ville</a>
+                            <a id="list-navbar" class="nav-link active" aria-current="page" href="{{ path('ville_add') }}">Ajouter une ville</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ path('campus_add') }}">Ajouter un Campus</a>
+                            <a id="list-navbar" class="nav-link active" aria-current="page" href="{{ path('campus_add') }}">Ajouter un Campus</a>
                         </li>
 
 
                     {% else %}
                         <li class="nav-item" >
-                            <a class="nav-link active" aria-current="page" href="{{ path('app_login') }}">Connexion</a>
+                            <a id="list-navbar" class="nav-link active" aria-current="page" href="{{ path('app_login') }}">Connexion</a>
                         </li>
                     {% endif %}
 

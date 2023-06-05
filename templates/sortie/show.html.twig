@@ -9,7 +9,7 @@
 
     <h2> {{ sortie.nom}} </h2>
 
-    <section>
+    <div>
         <div><strong>Organisateur : </strong>{{ sortie.organisateur.prenom }} {{ sortie.organisateur.nom }} </div>
         <div><strong>Date et heure de la sortie : </strong>{{ sortie.dateHeureDebut | date('Y-m-d H:i:s')}} </div>
         <div><strong>Date limite d'inscription : </strong>{{ sortie.dateLimiteInscription | date('Y-m-d')}} </div>
@@ -22,7 +22,7 @@
         <div><strong>Code Postal : </strong>{{ sortie.lieu.ville.codePostal }}</div>
         <div><strong>Latitude : </strong>{{ sortie.lieu.latitude }}</div>
         <div><strong>Longitude : </strong>{{ sortie.lieu.longitude }}</div>
-    </section>
+    </div>
 </span>
 
     <br>
@@ -44,15 +44,15 @@
             <table class="table table-striped align-middle  table-borderless">
                 <thead >
                 <tr>
-                    <th>Pseudo</th>
-                    <th>Nom</th>
+                    <th id="tableau-donnees">Pseudo</th>
+                    <th id="tableau-donnees">Nom</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for u in sortie.utilisateurs %}
                         <tr>
-                            <td><a href="{{ path('utilisateur_show', {'id':u.id }) }}">{{ u.username }}</a></td>
-                            <td>{{ u.nom }}</td>
+                            <td><a id="tableau-donnees" href="{{ path('utilisateur_show', {'id':u.id }) }}">{{ u.username }}</a></td>
+                            <td id="tableau-donnees">{{ u.nom }}</td>
 
                         </tr>
                 {% endfor %}
