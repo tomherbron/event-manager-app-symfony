@@ -31,7 +31,11 @@
                         <td>{{ sortie.dateLimiteInscription | date('d/m/Y') }}</td>
                         <td>{{ sortie.utilisateurs.count }}/{{ sortie.nbMaxInscriptions }}</td>
                         <td>{{ sortie.etat.libelle }}</td>
-                        <td>{{ sortie.nom }}</td>
+                        {% if app.user.id in sortie.utilisateurs|map(user => user.id) %}
+                            <td>X</td>
+                            {%else %}
+                            <td> </td>
+                        {% endif %}
                         <td>
                             <a href="{{ path('utilisateur_show', {'id':sortie.organisateur.id }) }}">{{ sortie.organisateur.username }}</a>
                         </td>
