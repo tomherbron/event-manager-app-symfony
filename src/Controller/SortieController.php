@@ -8,6 +8,7 @@ use App\Form\SortieType;
 use App\Repository\EtatRepository;
 use App\Repository\SortieRepository;
 use App\Repository\UtilisateurRepository;
+use DateTime;
 use phpDocumentor\Reflection\Types\This;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -127,14 +128,14 @@ class SortieController extends AbstractController
     public function subscribe(int $id, SortieRepository $sortieRepository, UtilisateurRepository $utilisateurRepository): Response
     {
         $user = $utilisateurRepository->findOneBy(['username' => $this->getUser()->getUserIdentifier()]);
-
+        $dateDuJour = new DateTime();
 
         $sortie = $sortieRepository->find($id);
 
         //Ya peut-être moyen que ça fonctionne
         //On vérifie que l'utilisateur qui veut s'inscrire n'est pas déjà inscrit
         // S'il valide la condition on l'inscrit dans la sortie
-        if (!$sortie->getUtilisateurs()->contains($this->getUser())) {
+        if (!$sortie->getUtilisateurs()->contains($this->getUser()) && $sortie->getDateLimiteInscription()>$dateDuJour) {
             $user->addSortie($sortie);
             $utilisateurRepository->save($user, true);
             $this->addFlash('success', 'Inscription validée');
@@ -142,17 +143,7 @@ class SortieController extends AbstractController
         }
 
 
-//        $inscriptions = $user->getSorties();
-//        foreach ($inscriptions as $sortieInscrite) {
-//
-//            if ($sortieInscrite->getId() != $sortie->getId()) {
-//                $user->addSortie($sortie);
-//                $utilisateurRepository->save($user, true);
-//                $this->addFlash('success', 'Inscription validée');
-//                return $this->redirectToRoute('main_home');
-//
-//            }
-//    }
+
 
     return $this->redirectToRoute('sortie_list');
 
