@@ -57,11 +57,11 @@ class SortieController extends AbstractController
     {
 
         $sorties = $sortieRepository->findAll();
-        $dateDuJour = date('Y-m-d H:i:s');
+        $dateDuJour = new DateTime();
 
         foreach ($sorties as $sortie){
-            $dateSortie = $sortie->getDateHeureDebut();
-            if ($dateDuJour > $dateSortie->add(new \DateInterval('P30D'))){
+            $dateCloture = $sortie->getDateLimiteInscription();
+            if ($dateDuJour > $dateCloture){
                 $sortie->setEtat($etatRepository->find(3));
             }
         }
