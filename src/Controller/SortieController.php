@@ -99,9 +99,17 @@ class SortieController extends AbstractController
     {
 
         $sortie = $sortieRepository->find($id);
-        $sortieRepository->remove($sortie, true);
 
-        $this->addFlash('success', 'Sortie supprimée avec succès.');
+        if ($sortie->getEtat()->getLibelle() != 'Activité en cours' || $sortie->getEtat()->getLibelle() != 'Passée' || $sortie->getEtat()->getLibelle() != 'Clôturée'
+        || $sortie->getEtat()->getLibelle() != 'Annulée'){
+            $sortie = $sortieRepository->find($id);
+            $sortieRepository->remove($sortie, true);
+
+            $this->addFlash('success', 'Sortie supprimée avec succès.');
+            return $this->redirectToRoute('main_home');
+        }
+
+        $this->addFlash('error', 'Vous ne pouvez pas supprimer cette sortie.');
         return $this->redirectToRoute('main_home');
 
     }
@@ -142,10 +150,27 @@ class SortieController extends AbstractController
             return $this->redirectToRoute('sortie_list', ['id' => $sortie->getId()]);
         }
 
-
-
-
     return $this->redirectToRoute('sortie_list');
+
+    }
+
+    #[Route('/unsubscribe/{id}', name: 'unsubscribe', requirements: ["id" => "\d+"])]
+    public function unsubscribe(int $id, SortieRepository $sortieRepository, UtilisateurRepository $utilisateurRepository) : Response
+    {
+        $user = $utilisateurRepository->findOneBy(['username' => $this->getUser()->getUserIdentifier()]);
+        $sortie = $sortieRepository->find($id);
+
+        $dateDuJour = new DateTime();
+
+        if ($sortie->getUtilisateurs()->contains($this->getUser()) && $sortie->getDateLimiteInscription() > $dateDuJour){
+            $user->removeSortie($sortie);
+            $utilisateurRepository->save($user, true);
+            $this->addFlash('success', 'Vous avez été désinscrit de cette sortie.');
+            return $this->redirectToRoute('sortie_list', ['id' => $sortie->getId()]);
+        }
+
+        $this->addFlash('error', 'Vous ne pouvez pas vous désinscire.');
+        return $this->redirectToRoute('sortie_list');
 
     }
 
