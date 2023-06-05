@@ -21,7 +21,7 @@ class Sortie
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
-    #[Assert\NotBlank(message: "Nom obligatoire !")]
+    #[Assert\NotBlank(message: "Date obligatoire !")]
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateHeureDebut = null;
 
@@ -36,6 +36,10 @@ class Sortie
     private ?int $duree = null;
 
     #[Assert\NotBlank(message: "Date limite d'incription obligatoire !")]
+    #[Assert\Expression(
+        expression: "this.getDateLimiteInscription() < this.getDateHeureDebut()",
+        message: "La date limite d'inscription doit être inférieure à la date et heure de début."
+    )]
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateLimiteInscription = null;
 

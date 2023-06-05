@@ -143,11 +143,16 @@ class SortieController extends AbstractController
         //Ya peut-être moyen que ça fonctionne
         //On vérifie que l'utilisateur qui veut s'inscrire n'est pas déjà inscrit
         // S'il valide la condition on l'inscrit dans la sortie
-        if (!$sortie->getUtilisateurs()->contains($this->getUser()) && $sortie->getDateLimiteInscription()>$dateDuJour) {
+        if (!$sortie->getUtilisateurs()->contains($this->getUser()) &&
+            $sortie->getDateLimiteInscription() > $dateDuJour &&
+            $sortie->getNbMaxInscriptions() > $sortie->getUtilisateurs()->count()) {
+
+
             $user->addSortie($sortie);
             $utilisateurRepository->save($user, true);
             $this->addFlash('success', 'Inscription validée');
             return $this->redirectToRoute('sortie_list', ['id' => $sortie->getId()]);
+
         }
 
     return $this->redirectToRoute('sortie_list');

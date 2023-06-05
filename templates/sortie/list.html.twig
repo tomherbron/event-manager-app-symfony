@@ -24,7 +24,7 @@
             </thead>
             <tbody>
             {% for sortie in sorties %}
- {% if sortie.etat.libelle != 'Créée' or  sortie.organisateur.id == app.user.id %}
+ {% if sortie.etat.libelle != 'Créée' or  sortie.organisateur.id == app.user.id or sortie.etat.libelle != 'Clôturée'%}
                 <tr>
                     <td>{{ sortie.nom }}</td>
                     <td>{{ sortie.dateHeureDebut | date('d/m/Y - H:i') }}</td>
@@ -35,9 +35,9 @@
                     <td><a href="{{ path('utilisateur_show', {'id':sortie.organisateur.id }) }}">{{ sortie.organisateur.username }}</a></td>
                     <td>
                         <a href="{{ path('sortie_show', {'id':sortie.id }) }}">Afficher</a>
-                        {% if sortie.dateLimiteInscription > date('now') %}
-                        <a href="{{ path('sortie_subscribe', {'id':sortie.id }) }}">S'inscrire</a>
-                            {% endif %}
+                        {% if sortie.dateLimiteInscription > date('now') and sortie.nbMaxInscriptions> sortie.utilisateurs.count %}
+                            <a href="{{ path('sortie_subscribe', {'id':sortie.id }) }}">S'inscrire</a>
+                        {% endif %}
                     </td>
                 </tr>
                  {% endif %}
