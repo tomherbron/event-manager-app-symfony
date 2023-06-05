@@ -29,7 +29,7 @@
     <section>
         {% if app.user.id == sortie.organisateur.id %}
         <a class="link_button btn btn-outline-light rounded-0" href="{{ path('sortie_update', {'id':sortie.id }) }}">Modifier</a>
-            {% if sortie.etat.libelle == 'Créee' or sortie.etat.libelle == 'Ouverte'%}
+            {% if sortie.etat.libelle == 'Créee' or sortie.etat.libelle == 'Ouverte' %}
                 <a class="link_button btn btn-outline-light rounded-0" onclick="return confirm('Êtes vous sûr de supprimer cette sortie?')" href="{{ path('sortie_delete', {'id':sortie.id }) }}">Annuler</a>
             {% endif %}
             {% if sortie.etat.libelle == 'Créée'  %}

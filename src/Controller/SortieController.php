@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints\Date;
 
 #[Route('/sortie', name: 'sortie_')]
 class SortieController extends AbstractController
@@ -48,9 +49,22 @@ class SortieController extends AbstractController
         ]);
     }
 
+    /**
+     * @throws \Exception
+     */
     #[Route('/list', name: 'list')]
-    public function list(SortieRepository $sortieRepository): Response
+    public function list(SortieRepository $sortieRepository, EtatRepository $etatRepository): Response
     {
+
+        $sorties = $sortieRepository->findAll();
+        $dateDuJour = date('Y-m-d H:i:s');
+
+        foreach ($sorties as $sortie){
+            $dateSortie = new DateTime($sortie->getDateHeureDebut());
+            if ($dateDuJour > + $dateSortie->add(new \DateInterval('P30D'))){
+                $sortie->setEtat($etatRepository->find(3));
+            }
+        }
 
         $sortie = $sortieRepository->findBy([], ["nom" => "ASC"]);
 
