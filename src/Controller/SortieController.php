@@ -60,8 +60,8 @@ class SortieController extends AbstractController
         $dateDuJour = date('Y-m-d H:i:s');
 
         foreach ($sorties as $sortie){
-            $dateSortie = new DateTime($sortie->getDateHeureDebut());
-            if ($dateDuJour > + $dateSortie->add(new \DateInterval('P30D'))){
+            $dateSortie = $sortie->getDateHeureDebut();
+            if ($dateDuJour > $dateSortie->add(new \DateInterval('P30D'))){
                 $sortie->setEtat($etatRepository->find(3));
             }
         }
