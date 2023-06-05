@@ -41,7 +41,7 @@
                             </td>
                             <td>
                                 <a id="tableau-donnees" href="{{ path('sortie_show', {'id':sortie.id }) }}">Afficher</a>
-                                {% if sortie.dateLimiteInscription > date('now') and sortie.nbMaxInscriptions > sortie.utilisateurs.count and app.user.sorties.current == sortie.utilisateurs.current %}
+                                {% if sortie.dateLimiteInscription > date('now') and sortie.nbMaxInscriptions > sortie.utilisateurs.count and sortie.utilisateurs.current == app.user.sorties.current %}
                                     <a id="tableau-donnees" href="{{ path('sortie_subscribe', {'id':sortie.id }) }}">S'inscrire</a>
                                 {% endif %}
                                 <a id="tableau-donnees" href="{{ path('sortie_unsubscribe', {'id':sortie.id }) }}">Se désister</a>
