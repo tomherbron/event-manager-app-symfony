@@ -13,6 +13,8 @@ use App\Repository\UtilisateurRepository;
 use Doctrine\ORM\Mapping\Entity;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -58,11 +60,17 @@ class SortieType extends AbstractType
                     return $repository->createQueryBuilder('c');
                 }
             ])
+
             ->add('lieu', EntityType::class, [
                 'class' => Lieu::class,
                 'label' => 'Lieu : ',
-                'choice_label' => 'nom'
+                'choice_label' => 'nom',
+                'required' => false, // Rend ce champ facultatif
             ])
+        ->add('ajouterLieu', ButtonType::class, [
+        'label' => '+',
+    ])
+
         ;
     }
 

@@ -2,10 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Lieu;
 use App\Entity\Sortie;
 use App\Entity\Utilisateur;
+use App\Form\LieuType;
 use App\Form\SortieType;
 use App\Repository\EtatRepository;
+use App\Repository\LieuRepository;
 use App\Repository\SortieRepository;
 use App\Repository\UtilisateurRepository;
 use DateTime;
@@ -21,23 +24,37 @@ use Symfony\Component\Validator\Constraints\Date;
 class SortieController extends AbstractController
 {
     #[Route('/add', name: 'add')]
-    public function add(Request $request, SortieRepository $sortieRepository, EtatRepository $etatRepository): Response
+    public function add(Request          $request,
+                        SortieRepository $sortieRepository,
+                        EtatRepository   $etatRepository,
+                        LieuRepository   $lieuRepository): Response
     {
         $newSortie = new Sortie();
         $sortieForm = $this->createForm(SortieType::class, $newSortie);
 
+        $newLieu = new Lieu();
+        $lieuForm = $this->createForm(LieuType::class, $newLieu);
+
         $user = $this->getUser();
 
         $sortieForm->handleRequest($request);
+        $lieuForm->handleRequest($request);
+
+
+        if ($lieuForm->isSubmitted() && $lieuForm->isValid()) {
+            dump($newLieu);
+            $lieuRepository->save($newLieu, true);
+        }
+
 
         if ($sortieForm->isSubmitted() && $sortieForm->isValid()) {
 
             $newSortie->setOrganisateur($user);
             $campus = $sortieForm->get('campus')->getData();
             $newSortie->setCampus($campus);
-            $newSortie->setEtat(
-                $etatRepository->find('1')
+            $newSortie->setEtat($etatRepository->find('1')
             );
+
 
             $sortieRepository->save($newSortie, true);
             $this->addFlash('success', 'Sortie créee avec succès.');
@@ -45,7 +62,8 @@ class SortieController extends AbstractController
         }
 
         return $this->render('sortie/add.html.twig', [
-            'sortieForm' => $sortieForm->createView()
+            'sortieForm' => $sortieForm->createView(),
+            'lieuForm' => $lieuForm->createView()
         ]);
     }
 
