@@ -69,7 +69,8 @@ class SortieType extends AbstractType
             ])
             ->add('ajouterLieu', ButtonType::class, [
                 'label' => '+',
-                'attr' => ['name' => 'addlieu']
+                'attr' => ['name' => 'addlieu',
+                    'class' => 'btn btn-outline-light rounded-0 text-center']
             ])
 
         ;
