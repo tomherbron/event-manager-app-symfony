@@ -80,8 +80,12 @@ class SortieController extends AbstractController
         $filterForm->handleRequest($request);
 
         if ($filterForm->isSubmitted() && $filterForm->isValid()) {
-            $sortieRepository->findByFilters($filterForm);
+            $sorties = $sortieRepository->findByFilters($filterForm);
 
+            return $this->render('sortie/list.html.twig',[
+                'sorties' => $sorties,
+                'filterForm' => $filterForm->createView()
+            ]);
         }
 
         $sorties = $sortieRepository->findAll();

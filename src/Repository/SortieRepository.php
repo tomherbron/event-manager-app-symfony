@@ -45,9 +45,13 @@ class SortieRepository extends ServiceEntityRepository
 
     public function findByFilters(FormInterface $filterForm){
 
+        $keywords = $filterForm->get('keywords')->getData();
+
         $qb = $this->createQueryBuilder('s');
+        $qb->where($qb->expr()->like('s.nom', ':keywords'))
+            ->setParameter('keywords', '%'.$keywords.'%');
 
-
+            return $qb->getQuery()->getResult();
 
     }
 
