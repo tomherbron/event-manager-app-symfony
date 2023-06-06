@@ -56,6 +56,12 @@ class SortieRepository extends ServiceEntityRepository
         $estInscrit = $filterForm->get('estInscrit')->getData();
         $pasInscrit = $filterForm->get('pasInscrit')->getData();
         $sortiesPassees = $filterForm->get('sortiesPassees')->getData();
+        $dateMin = $filterForm->get('dateMin')->getData();
+        $dateMax = $filterForm->get('dateMax')->getData();
+
+
+
+
 
         $qb = $this->createQueryBuilder('s');
 
@@ -107,6 +113,14 @@ class SortieRepository extends ServiceEntityRepository
                 ->leftJoin('s.etat', 'etat')
                 ->andWhere('etat.id =:etatPasse')
                 ->setParameter('etatPasse', 5);
+        }
+        if ($dateMin) {
+            $qb->andWhere('s.dateHeureDebut >= :dateMin')
+                ->setParameter('dateMin', $dateMin);
+        }
+        if($dateMax){
+            $qb->andWhere('s.dateHeureDebut <= :dateMax')
+            ->setParameter('dateMax', $dateMax);
         }
 
         return $qb->getQuery()->getResult();

@@ -32,11 +32,17 @@ class SortieFilterType extends AbstractType
                     return $repository->createQueryBuilder('c');
                 }
             ])
-            ->add('dateDebut', DateType::class, [
+            ->add('dateMin', DateType::class, [
                 'html5'=> true,
                 'widget'=> 'single_text',
                 'required' => false,
-                'label' => 'Date de début :'
+                'label' => 'Date Entre le :'
+            ])
+            ->add('dateMax', DateType::class, [
+                'html5'=> true,
+                'widget'=> 'single_text',
+                'required' => false,
+                'label' => 'Et le :'
             ])
             ->add('estOrganisateur', CheckboxType::class,[
                 'required' => false,
