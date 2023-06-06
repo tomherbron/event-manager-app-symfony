@@ -2,7 +2,7 @@
     <div class="container-fluid">
 
         <a class="navbar-brand " href="{{ path('main_home') }}">
-            <img src="{{ asset('img/logo_petit.png') }}" alt="Eni Event" class="max-width:20%">
+            <img src="{{ asset('img/LogoooEnd.png') }}" alt="Eni Event" class="max-width:20%">
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,18 +26,9 @@
                         <li class="nav-item dropdown">
                             <a id="list-navbar" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Sorties</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li><a class="dropdown-item" href="{{ path('sortie_list') }}">Consulter les sorties</a></li>
+                                <li><a class="dropdown-item" href="{{ path('sortie_add') }}">Ajouter une sortie</a></li>
                             </ul>
-                        </li>
-
-                        <li class="nav-item ">
-                            <a id="list-navbar" class="nav-link active" aria-current="page" href="{{ path('app_logout') }}">Déconnexion</a>
-                        </li>
-                        <li class="nav-item">
-                            <a id="list-navbar" class="nav-link active" aria-current="page" href="{{ path('sortie_add') }}">Ajouter une sortie</a>
                         </li>
                         <li class="nav-item">
                             <a id="list-navbar" class="nav-link active" aria-current="page" href="{{ path('app_register') }}">Inscrire un utilisateur</a>
@@ -47,6 +38,9 @@
                         </li>
                         <li class="nav-item">
                             <a id="list-navbar" class="nav-link active" aria-current="page" href="{{ path('campus_add') }}">Ajouter un Campus</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a id="list-navbar" class="nav-link active" aria-current="page" href="{{ path('app_logout') }}">Déconnexion</a>
                         </li>
 
 
