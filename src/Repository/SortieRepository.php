@@ -9,6 +9,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use phpDocumentor\Reflection\Types\This;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Security\Core\Security;
 
 /**
  * @extends ServiceEntityRepository<Sortie>
@@ -20,9 +21,12 @@ use Symfony\Component\Form\FormInterface;
  */
 class SortieRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    private $security;
+
+    public function __construct(ManagerRegistry $registry, Security $security)
     {
         parent::__construct($registry, Sortie::class);
+        $this->security = $security;
     }
 
     public function save(Sortie $entity, bool $flush = false): void
@@ -48,6 +52,9 @@ class SortieRepository extends ServiceEntityRepository
 
         $keywords = $filterForm->get('keywords')->getData();
         $campus = $filterForm->get('campus')->getData();
+        $estOrganisateur = $filterForm->get('estOrganisateur')->getData();
+
+
         $qb = $this->createQueryBuilder('s');
 
 
@@ -60,6 +67,12 @@ class SortieRepository extends ServiceEntityRepository
         if ($campus) {
             $qb->andWhere('s.campus =:campus')
                 ->setParameter('campus', $campus);
+        }
+
+        if($estOrganisateur){
+            $currentUser = $this->security->getUser();
+            $qb->andWhere('s.organisateur =:currentUser')
+                ->setParameter('currentUser',$currentUser);
         }
 
         return $qb->getQuery()->getResult();
