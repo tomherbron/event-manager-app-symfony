@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} | Modifier Campus
+{% endblock %}
+
+{% block body %}
+    {% embed 'views/form/default_form.html.twig' with {'form' : campusForm} %}
+        {% block h2 %} ENI Events | Modifier un campus {% endblock %}
+        {% block buttonLabel %} Modifier {% endblock %}
+    {% endembed %}
+{% endblock %}
