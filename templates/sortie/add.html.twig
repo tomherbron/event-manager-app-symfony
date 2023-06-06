@@ -7,17 +7,29 @@
 {% block body %}
 
 
-    {% embed 'views/form/default_form.html.twig' with {'form' : sortieForm}%}
-        {%  block h2 %} ENI Events | Ajouter une sortie {% endblock %}
-        {%  block buttonLabel %} Ajouter {% endblock %}
+    {% embed 'views/form/default_form.html.twig' with {'form' : sortieForm} %}
+        {% block h2 %} ENI Events | Ajouter une sortie {% endblock %}
+        {% block buttonLabel %} Ajouter {% endblock %}
 
     {% endembed %}
 
 
     {% block h2%}<h2> Ajouter un lieu</h2>{% endblock %}
-{% embed 'views/form/default_form.html.twig' with {'form' : lieuForm} %}
-    {%  block buttonLabel %} Ajouter {% endblock %}
-{% endembed %}
+    <div id="lieu-form-wrapper" class="hidden">
+        {% embed 'views/form/default_form.html.twig' with {'form' : lieuForm} %}
+            {% block buttonLabel %} Ajouter {% endblock %}
+        {% endembed %}
+    </div>
+    <script>
 
+        let lieuFormWrapper = document.getElementById('lieu-form-wrapper');
+        let ajouterLieuButton = document.getElementById("sortie_ajouterLieu");
+
+        ajouterLieuButton.addEventListener('click', function () {
+            lieuFormWrapper.classList.toggle('show');
+            lieuFormWrapper.classList.toggle('hidden');
+            console.log(lieuFormWrapper.classList)
+        });
+    </script>
 {% endblock %}
 

@@ -67,9 +67,10 @@ class SortieType extends AbstractType
                 'choice_label' => 'nom',
                 'required' => false, // Rend ce champ facultatif
             ])
-        ->add('ajouterLieu', ButtonType::class, [
-        'label' => '+',
-    ])
+            ->add('ajouterLieu', ButtonType::class, [
+                'label' => '+',
+                'attr' => ['name' => 'addlieu']
+            ])
 
         ;
     }

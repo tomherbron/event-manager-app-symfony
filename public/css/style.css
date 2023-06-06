@@ -196,13 +196,13 @@
             font-size: 1em;
         }
 
+.hidden {
+    display: none;
+}
 
-
-
-
-
-
-
+.show{
+    display: block;
+}
 
 
 /*body{*/
