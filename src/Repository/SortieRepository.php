@@ -43,17 +43,29 @@ class SortieRepository extends ServiceEntityRepository
         }
     }
 
-    public function findByFilters(FormInterface $filterForm){
+    public function findByFilters(FormInterface $filterForm)
+    {
 
         $keywords = $filterForm->get('keywords')->getData();
-
+        $campus = $filterForm->get('campus')->getData();
         $qb = $this->createQueryBuilder('s');
-        $qb->where($qb->expr()->like('s.nom', ':keywords'))
-            ->setParameter('keywords', '%'.$keywords.'%');
 
-            return $qb->getQuery()->getResult();
 
+        if ($keywords) {
+            $qb->where($qb->expr()->like('s.nom', ':keywords'))
+                ->setParameter('keywords', '%' . $keywords . '%');
+        }
+
+
+        if ($campus) {
+            $qb->andWhere('s.campus =:campus')
+                ->setParameter('campus', $campus);
+        }
+
+        return $qb->getQuery()->getResult();
     }
+
+
 
 //    /**
 //     * @return Sortie[] Returns an array of Sortie objects
