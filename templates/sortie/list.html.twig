@@ -41,10 +41,12 @@
                             </td>
                             <td>
                                 <a id="tableau-donnees" href="{{ path('sortie_show', {'id':sortie.id }) }}">Afficher</a>
-                                {% if sortie.dateLimiteInscription > date('now') and sortie.nbMaxInscriptions > sortie.utilisateurs.count and sortie.utilisateurs.current == app.user.sorties.current %}
+                                {% if sortie.dateLimiteInscription > date('now') and sortie.nbMaxInscriptions > sortie.utilisateurs.count and app.user.id not in sortie.utilisateurs|map(user => user.id) %}
                                     <a id="tableau-donnees" href="{{ path('sortie_subscribe', {'id':sortie.id }) }}">S'inscrire</a>
                                 {% endif %}
+                    {% if app.user.id in sortie.utilisateurs|map(user => user.id) %}
                                 <a id="tableau-donnees" href="{{ path('sortie_unsubscribe', {'id':sortie.id }) }}">Se désister</a>
+                        {% endif %}
                             </td>
                         </tr>
                     {% endif %}

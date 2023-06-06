@@ -58,7 +58,7 @@ class SortieController extends AbstractController
 
 
             $sortieRepository->save($newSortie, true);
-            $this->addFlash('success', 'Sortie créee avec succès.');
+            $this->addFlash('success', 'Sortie créée avec succès.');
             return $this->redirectToRoute('main_home');
         }
 
