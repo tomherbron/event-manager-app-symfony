@@ -1,22 +1,45 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-{{ parent() }} | ajout Campus
+    {{ parent() }} | ajout Campus
 {% endblock %}
 
-
 {% block body %}
-<span class="encadrement-contenu">
+    <span class="encadrement-contenu">
+    <table class="table table-striped align-middle  table-borderless">
+        <thead>
+            <tr>
+                <th id="tableau-donnees">Nom</th>
+                <th id="tableau-donnees">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
 
-    <h2>Ajouter un campus</h2>
-    <br>
+        {% for campus in campus %}
+            <tr>
+                <td id="tableau-donnees">{{ campus.nom }}</td>
+                <td id="tableau-donnees"><a id="tableau-donnees" href="{{ path('campus_update', {'id':campus.id }) }}">modifier</a>
+                <a id="tableau-donnees" href="{{ path('campus_delete', {'id':campus.id }) }}">supprimer</a>
+                </td>
+            </tr>
+        {% endfor %}
 
-    {{ form_start(campusForm) }}
-    {{ form_widget(campusForm) }}
+        <tr>
+            <td id="tableau-donnees">
+                {{ form_start(campusForm) }}
+                {{ form_widget(campusForm) }}
+            </td>
+            <td id="tableau-donnees">
+                <button class="btn btn-outline-light rounded-0" type="submit">Enregistrer</button>
+                {{ form_end(campusForm) }}
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
     <br>
-    <button class="btn btn-outline-light rounded-0" type="submit" >Enregistrer</button>
-    {{ form_end(campusForm) }}
-</span>
+    <br>
+    </span>
 {% endblock %}
 
 
