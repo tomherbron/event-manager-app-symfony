@@ -1,6 +1,6 @@
 {% form_theme form 'views/theme/form_theme.html.twig' %}
 
-<span class="encadrement-contenu">
+{#<span class="encadrement-contenu">#}
 
 <h2>{% block h2 %}{% endblock %}</h2>
 
@@ -9,4 +9,6 @@
 
 <button class="btn btn-outline-light rounded-0">{% block buttonLabel %}{% endblock %}</button>
 
-{{ form_end(form) }}</span>
+{{ form_end(form) }}
+
+{#</span>#}
