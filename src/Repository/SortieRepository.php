@@ -3,8 +3,12 @@
 namespace App\Repository;
 
 use App\Entity\Sortie;
+use App\Form\SortieFilterType;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use phpDocumentor\Reflection\Types\This;
+use Symfony\Component\Form\Form;
+use Symfony\Component\Form\FormInterface;
 
 /**
  * @extends ServiceEntityRepository<Sortie>
@@ -37,6 +41,14 @@ class SortieRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findByFilters(FormInterface $filterForm){
+
+        $qb = $this->createQueryBuilder('s');
+
+
+
     }
 
 //    /**

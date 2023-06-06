@@ -7,6 +7,7 @@ use App\Entity\Sortie;
 use App\Entity\Utilisateur;
 use App\Form\LieuType;
 use App\Form\AnnulationSortieType;
+use App\Form\SortieFilterType;
 use App\Form\SortieType;
 use App\Repository\EtatRepository;
 use App\Repository\LieuRepository;
@@ -72,8 +73,16 @@ class SortieController extends AbstractController
      * @throws \Exception
      */
     #[Route('/list', name: 'list')]
-    public function list(SortieRepository $sortieRepository, EtatRepository $etatRepository): Response
+    public function list(Request $request, SortieRepository $sortieRepository, EtatRepository $etatRepository): Response
     {
+
+        $filterForm = $this->createForm(SortieFilterType::class);
+        $filterForm->handleRequest($request);
+
+        if ($filterForm->isSubmitted() && $filterForm->isValid()) {
+            $sortieRepository->findByFilters($filterForm);
+
+        }
 
         $sorties = $sortieRepository->findAll();
         $dateDuJour = new DateTime();
@@ -100,7 +109,8 @@ class SortieController extends AbstractController
 
 
         return $this->render('sortie/list.html.twig', [
-            'sorties' => $sortie
+            'sorties' => $sortie,
+            'filterForm' => $filterForm->createView()
         ]);
 
     }

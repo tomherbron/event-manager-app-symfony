@@ -8,6 +8,11 @@
     <h2>Liste des sorties</h2>
     <br>
     <br>
+    <div>
+        {% embed 'views/form/default_form.html.twig' with {'form' : filterForm}%}
+            {%  block buttonLabel %} Filtrer {% endblock %}
+        {% endembed %}
+    </div>
     <div class="table-responsive text-white encadrement-contenu">
         <table class="table table-striped align-middle  table-borderless">
             <thead>
