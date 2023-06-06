@@ -106,6 +106,7 @@ class SortieController extends AbstractController
                 } elseif ($dateDuJour > $finSortie) {
                     $sortie->setEtat($etatRepository->find(5));
                 }
+                $sortieRepository->save($sortie, true);
             }
         }
 

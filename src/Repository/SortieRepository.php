@@ -53,7 +53,9 @@ class SortieRepository extends ServiceEntityRepository
         $keywords = $filterForm->get('keywords')->getData();
         $campus = $filterForm->get('campus')->getData();
         $estOrganisateur = $filterForm->get('estOrganisateur')->getData();
-
+        $estInscrit = $filterForm->get('estInscrit')->getData();
+        $pasInscrit = $filterForm->get('pasInscrit')->getData();
+        $sortiesPassees = $filterForm->get('sortiesPassees')->getData();
 
         $qb = $this->createQueryBuilder('s');
 
@@ -69,39 +71,44 @@ class SortieRepository extends ServiceEntityRepository
                 ->setParameter('campus', $campus);
         }
 
-        if($estOrganisateur){
+        if ($estOrganisateur) {
             $currentUser = $this->security->getUser();
             $qb->andWhere('s.organisateur =:currentUser')
-                ->setParameter('currentUser',$currentUser);
+                ->setParameter('currentUser', $currentUser);
+        }
+
+        if ($estInscrit) {
+            $currentUser = $this->security->getUser();
+            $qb->select('s')
+                ->from(Sortie::class, 'sc')
+                ->leftJoin('s.organisateur', 'o')
+                ->leftJoin('s.utilisateurs', 'i')
+                ->andWhere($qb->expr()->eq('i', ':currentUser'))
+                ->setParameter('currentUser', $currentUser);
+
+        }
+        if ($pasInscrit) {
+            $currentUser = $this->security->getUser();
+            $subQueryBuilder = $this->createQueryBuilder('sub')
+                ->select('sub.id')
+                ->leftJoin('sub.utilisateurs', 'subUser')
+                ->andWhere('subUser = :currentUser')
+                ->setParameter('currentUser', $currentUser);
+
+            $qb->select('s')
+                ->from(Sortie::class, 'sc')
+                ->leftJoin('s.organisateur', 'o')
+                ->andWhere($qb->expr()->notIn('s.id', $subQueryBuilder->getDQL()))
+                ->setParameter('currentUser', $currentUser);
+        }
+
+        if ($sortiesPassees){
+            $qb->select('s')
+                ->leftJoin('s.etat', 'etat')
+                ->andWhere('etat.id =:etatPasse')
+                ->setParameter('etatPasse', 5);
         }
 
         return $qb->getQuery()->getResult();
     }
-
-
-
-//    /**
-//     * @return Sortie[] Returns an array of Sortie objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('s.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Sortie
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
 }

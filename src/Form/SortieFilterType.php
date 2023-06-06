@@ -33,6 +33,8 @@ class SortieFilterType extends AbstractType
                 }
             ])
             ->add('dateDebut', DateType::class, [
+                'html5'=> true,
+                'widget'=> 'single_text',
                 'required' => false,
                 'label' => 'Date de début :'
             ])
