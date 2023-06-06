@@ -1,11 +1,11 @@
 /*Mise en page générale*/
 
- /*html{*/
+ html{
 
- /*   Overflow-x:scroll;*/
- /*   Overflow-y:scroll;*/
+    Overflow-x:scroll;
+    Overflow-y:scroll;
 
- /*   }*/
+    }
 
     html, body {
         width: 100%;
