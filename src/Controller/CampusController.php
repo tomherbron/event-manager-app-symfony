@@ -16,8 +16,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class CampusController extends AbstractController
 {
     #[Route('/add', name: 'add')]
-    public function add(Request          $request,
-                        CampusRepository  $campusRepository,
+    public function add(Request                $request,
+                        CampusRepository       $campusRepository,
                         EntityManagerInterface $entityManager
     ): Response
 
@@ -29,7 +29,7 @@ class CampusController extends AbstractController
 
         $campusForm->handleRequest($request);
 
-        if($campusForm->isSubmitted() && $campusForm->isValid()){
+        if ($campusForm->isSubmitted() && $campusForm->isValid()) {
             $entityManager->persist($campus);
             $entityManager->flush();
             return $this->redirectToRoute('campus_add');
@@ -40,39 +40,41 @@ class CampusController extends AbstractController
 
 
         return $this->render('campus/add.html.twig', [
-            'campusForm'=>$campusForm->createView(),
-            'campus'=>$mesCampus
+            'campusForm' => $campusForm->createView(),
+            'campus' => $mesCampus
         ]);
     }
 
-#[Route('/update/{id}', name: 'update', requirements: ["id" => "\d+"])]
-public function edit(Request $request, int $id,
-                     CampusRepository $campusRepository): Response{
+    #[Route('/update/{id}', name: 'update', requirements: ["id" => "\d+"])]
+    public function edit(Request          $request, int $id,
+                         CampusRepository $campusRepository): Response
+    {
 
         $campus = $campusRepository->find($id);
         $campusForm = $this->createForm(CampusType::class, $campus);
 
         $campusForm->handleRequest($request);
 
-        if($campusForm->isSubmitted() &&$campusForm->isValid()){
-            $campusRepository->save($campus,true);
+        if ($campusForm->isSubmitted() && $campusForm->isValid()) {
+            $campusRepository->save($campus, true);
             $this->addFlash('success', 'Campus modifié avec succès.');
             return $this->redirectToRoute('campus_add');
         }
-    return $this->render('campus/update.html.twig',[
-        'campusForm'=>$campusForm->createView()
-    ]);
-}
-#[Route('/delete/{id}', name: 'delete', requirements: ["id" => "\d+"])]
-public function delete(Request $request, int $id, CampusRepository $campusRepository): Response
-{
-    $campus =$campusRepository->find($id);
+        return $this->render('campus/update.html.twig', [
+            'campusForm' => $campusForm->createView()
+        ]);
+    }
 
-    $campusRepository->remove($campus, true);
+    #[Route('/delete/{id}', name: 'delete', requirements: ["id" => "\d+"])]
+    public function delete(Request $request, int $id, CampusRepository $campusRepository): Response
+    {
+        $campus = $campusRepository->find($id);
 
-    $this->addFlash('success', "Campus supprimé !");
+        $campusRepository->remove($campus, true);
 
-    return $this->redirectToRoute('campus_add');
+        $this->addFlash('success', "Campus supprimé !");
 
-}
+        return $this->redirectToRoute('campus_add');
+
+    }
 }

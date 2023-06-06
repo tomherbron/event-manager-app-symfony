@@ -60,6 +60,9 @@
         color: #fffcfc;
     }
 
+.form-field input[type="text"], .form-field select, .form-field  textarea, .form-field  .form-field  {
+    border-radius: 10px; /* Adjust the value as needed */ }
+
 /*Gestion du profil utilisateur*/
 
     /*Taille maximale de l'image utilisateur*/

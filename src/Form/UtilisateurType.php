@@ -20,7 +20,8 @@ class UtilisateurType extends AbstractType
     {
         $builder
             ->add('username', TextType::class, [
-                'label' => 'Pseudo :'
+                'label' => 'Pseudo :',
+                'attr' => ['class' => 'form-field']
             ])
             ->add('nom', TextType::class,[
                 'label'=> 'Nom :'
