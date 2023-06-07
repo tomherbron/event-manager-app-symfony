@@ -10,25 +10,25 @@
         <br>
 
         {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.username) }}
-        <br>
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        <br>
-        {{ form_row(registrationForm.nom) }}
-        <br>
-        {{ form_row(registrationForm.prenom) }}
-        <br>
-        {{ form_row(registrationForm.telephone) }}
-        <br>
-        {{ form_row(registrationForm.email) }}
-        <br>
-        {{ form_row(registrationForm.campus) }}
+            {{ form_row(registrationForm.username) }}
+            <br>
+            {{ form_row(registrationForm.plainPassword, {
+                label: 'Password'
+            }) }}
+            <br>
+            {{ form_row(registrationForm.nom) }}
+            <br>
+            {{ form_row(registrationForm.prenom) }}
+            <br>
+            {{ form_row(registrationForm.telephone) }}
+            <br>
+            {{ form_row(registrationForm.email) }}
+            <br>
+            {{ form_row(registrationForm.campus) }}
 
-       {#  {{ form_row(registrationForm.agreeTerms) }}#}
-        <br>
-        <button type="submit" class="btn btn-outline-light rounded-0">Register</button>
+           {#  {{ form_row(registrationForm.agreeTerms) }}#}
+            <br>
+            <button class="btn btn-outline-light rounded-0" type="submit">Register</button>
         {{ form_end(registrationForm) }}
     </span>
 
