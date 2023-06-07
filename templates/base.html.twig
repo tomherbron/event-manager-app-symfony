@@ -33,18 +33,17 @@
 
             </div>
 
-        {% for label, messages in app.flashes %}
-            {% for message in messages %}
-                <div class="flash flash-{{ label }}">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endfor %}
-
                     <header>
                             {% include 'header/header.html.twig' %}
                     </header>
                     <main>
+                        {% for label, messages in app.flashes %}
+                            {% for message in messages %}
+                                <div class="flash flash-{{ label }}">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
                         <div class="d-flex flex-column align-items-center">
                         {% block body %}{% endblock %}
                         </div>

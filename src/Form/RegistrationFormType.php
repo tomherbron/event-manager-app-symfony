@@ -71,7 +71,7 @@ class RegistrationFormType extends AbstractType
                     $qb->addOrderBy('u.nom', 'ASC');
                     return $qb;
                 }
-                    ])
+                ])
 
 
 

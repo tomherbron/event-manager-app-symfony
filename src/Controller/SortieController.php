@@ -15,6 +15,7 @@ use App\Repository\SortieRepository;
 use App\Repository\UtilisateurRepository;
 use DateTime;
 use phpDocumentor\Reflection\Types\This;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -237,6 +238,7 @@ class SortieController extends AbstractController
         return $this->redirectToRoute('sortie_list');
 
     }
+
 
     #[Route('/cancel/{id}', name: 'cancel', requirements: ["id" => "\d+"])]
     public function cancel(Request $request, int $id, SortieRepository $sortieRepository, EtatRepository $etatRepository): Response
