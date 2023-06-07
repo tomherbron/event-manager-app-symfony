@@ -25,6 +25,7 @@ class Ville
 
     #[ORM\OneToMany(mappedBy: 'ville', targetEntity: Lieu::class, orphanRemoval: true)]
     private Collection $lieux;
+    private ArrayCollection $villes;
 
     public function __construct()
     {

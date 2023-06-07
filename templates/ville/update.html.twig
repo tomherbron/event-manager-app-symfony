@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} | Modifier Ville
+{% endblock %}
+
+{% block body %}
+    {% embed 'views/form/default_form.html.twig' with {'form' : villeForm}%}
+        {% block h2 %} ENI Events | Modifier une ville {% endblock %}
+        {% block buttonLabel %} Modifier {% endblock %}
+    {%endembed %}
+{% endblock %}
+
+
+

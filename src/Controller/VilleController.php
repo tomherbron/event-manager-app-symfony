@@ -28,17 +28,50 @@ class VilleController extends AbstractController
 
         if ($villeForm->isSubmitted() && $villeForm-> isValid()){
 
-
             $entityManager->persist($ville);
             $entityManager->flush();
-            return $this->redirectToRoute('sortie_list');
+            return $this->redirectToRoute('ville_add');
         }
+
+        $villes = $villeRepository->findAll();
 
 
         return $this->render('ville/add.html.twig', [
-            'villeForm' => $villeForm->createView()
+            'villeForm' => $villeForm->createView(),
+            'villes'=>$villes
         ]);
     }
+
+#[Route('/update/{id}', name: 'update', requirements: ["id" => "\d+"])]
+public function edit(Request $request, int $id,
+                     VilleRepository $villeRepository): Response{
+        $ville = $villeRepository->find($id);
+        $villeForm = $this->createForm(VilleType::class,$ville);
+
+        $villeForm->handleRequest($request);
+
+        if($villeForm->isSubmitted() && $villeForm->isValid()){
+            $villeRepository->save($ville,true);
+            $this->addFlash('success','Ville modifiée avec succès');
+            return $this->redirectToRoute('ville_add');
+        }
+
+        return $this->render('ville/update.html.twig',[
+            'villeForm'=>$villeForm->createView()
+        ]);
+}
+
+#[Route('/delete/{id}', name : 'delete', requirements: ["id" => "\d+"])]
+public function delete(Request $request, int $id,
+                       VilleRepository $villeRepository): Response{
+        $ville = $villeRepository->find($id);
+
+        $villeRepository->remove($ville, true);
+
+        $this -> addFlash('success', 'Ville supprimée');
+
+        return  $this->redirectToRoute('ville_add');
+}
 
 
 }

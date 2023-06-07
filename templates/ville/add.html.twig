@@ -9,12 +9,60 @@
     <span class="encadrement-contenu">
         <h2>Ajouter une ville</h2>
         <br>
-      {{ form_start(villeForm) }}
+    <table class="table table-striped align-middle  table-borderless">
+        <thead>
+            <tr>
+                <th id="tableau-donnees">Nom</th>
+                <th id="tableau-donnees">Code Postal</th>
+                <th id="tableau-donnees">Actions</th>
+            </tr>
+        </thead>
 
-            {{ form_widget(villeForm) }}
-        <br>
-        <button class="btn btn-outline-light rounded-0" type="submit" >Enregistrer</button>
-        {{ form_end(villeForm) }}
+        <tbody>
+        {% for ville in villes %}
+        <tr>
+            <td id="tableau-donnees">{{ ville.nom }}</td>
+            <td id="tableau-donnees">{{ ville.codePostal }}</td>
+            <td id="tableau-donnees">
+                <a id="tableau-donnees" href="{{ path('ville_update', {'id':ville.id}) }}">modifier</a>
+                <a id="tableau-donnees" href="{{ path('ville_delete', {'id':ville.id}) }}">supprimer</a>
+            </td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td id="tableau-donnees">
+                {{ form_start(villeForm) }}
+                {{ form_widget(villeForm) }}
+            </td>
+            <td id="tableau-donnees">
+                <button class="btn btn-outline-light btn-dark rounded-0" type="submit">Enregistrer</button>
+                {{ form_end(villeForm) }}
+            </td>
+        </tr>
+        </tbody>
+
+
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{#      {{ form_start(villeForm) }}#}
+
+{#            {{ form_widget(villeForm) }}#}
+{#        <br>#}
+{#        <button class="btn btn-outline-light rounded-0" type="submit" >Enregistrer</button>#}
+{#        {{ form_end(villeForm) }}#}
     </span>
 
 {% endblock %}
