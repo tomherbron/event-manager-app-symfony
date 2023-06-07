@@ -10,19 +10,17 @@
         <img class="img-fluid rounded-circle img-max" src="{{ asset('img/profilePictures/' ~ utilisateur.photo) }}" alt="{{ utilisateur.username }} ">
     </div>
     <br>
-    <h2 id="utilisateur-show-profil" class ="text-uppercase" style="display: inline-block"> {{ utilisateur.username }} </h2>
+    <h2 id="utilisateur-show-profil" class ="text-uppercase" style="display: inline-block"> {{ utilisateur.username }} &#9989</h2>
     <span class="encadrement-contenu">
-    <h2 style="display: inline-block"> Profil </h2>
+    <h2 style="display: inline-block">Mes informations</h2>
     <section>
         <div class ="utilisateur-infos">
-
-            <h3>{{ utilisateur.prenom }} {{ utilisateur.nom }}</h3>
-
-
             <div class="text-white">
-                <div>Téléphone : {{ utilisateur.telephone }}</div>
-                <div> E-mail : {{ utilisateur.email }}</div>
-                <div> Campus : {{ utilisateur.campus.nom }}</div>
+                <div><strong>Nom :</strong> {{ utilisateur.nom }}</div>
+                <div><strong>Prénom :</strong> {{ utilisateur.prenom }}</div>
+                <div><strong>Téléphone :</strong> {{ utilisateur.telephone }}</div>
+                <div><strong>E-mail :</strong> {{ utilisateur.email }}</div>
+                <div><strong>Campus :</strong> {{ utilisateur.campus.nom }}</div>
             </div>
         </div>
     </section>
