@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Form\UtilisateurType;
 use App\Repository\UtilisateurRepository;
 use App\Tools\Uploader;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,6 +31,7 @@ class UtilisateurController extends AbstractController
         ]);
     }
 
+    #[IsGranted("ROLE_ADMIN")]
     #[Route('/update/{id}', name: 'update', requirements: ["id" => "\d+"])]
     public function update(int                         $id,
                            Request                     $request,

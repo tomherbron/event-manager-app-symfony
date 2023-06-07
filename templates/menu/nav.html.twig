@@ -30,6 +30,7 @@
                                 <li><a class="dropdown-item" href="{{ path('sortie_add') }}">Ajouter une sortie</a></li>
                             </ul>
                         </li>
+                         {% if is_granted('ROLE_ADMIN') %}
                         <li class="nav-item">
                             <a id="list-navbar" class="nav-link active" aria-current="page" href="{{ path('app_register') }}">Inscrire un utilisateur</a>
                         </li>
@@ -39,6 +40,7 @@
                         <li class="nav-item">
                             <a id="list-navbar" class="nav-link active" aria-current="page" href="{{ path('campus_add') }}">Ajouter un Campus</a>
                         </li>
+                            {% endif %}
                         <li class="nav-item ">
                             <a id="list-navbar" class="nav-link active" aria-current="page" href="{{ path('app_logout') }}">Déconnexion</a>
                         </li>

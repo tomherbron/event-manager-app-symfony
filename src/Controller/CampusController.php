@@ -7,6 +7,7 @@ use App\Form\CampusType;
 use App\Repository\CampusRepository;
 use App\Repository\VilleRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,7 +16,11 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/campus', name: 'campus_')]
 class CampusController extends AbstractController
 {
+
+
+
     #[Route('/add', name: 'add')]
+    #[IsGranted('ROLE_ADMIN')]
     public function add(Request          $request,
                         CampusRepository  $campusRepository,
                         EntityManagerInterface $entityManager
@@ -45,6 +50,9 @@ class CampusController extends AbstractController
         ]);
     }
 
+
+
+    #[IsGranted("ROLE_ADMIN")]
 #[Route('/update/{id}', name: 'update', requirements: ["id" => "\d+"])]
 public function edit(Request $request, int $id,
                      CampusRepository $campusRepository): Response{
@@ -63,6 +71,8 @@ public function edit(Request $request, int $id,
         'campusForm'=>$campusForm->createView()
     ]);
 }
+
+#[IsGranted("ROLE_ADMIN")]
 #[Route('/delete/{id}', name: 'delete', requirements: ["id" => "\d+"])]
 public function delete(Request $request, int $id, CampusRepository $campusRepository): Response
 {
