@@ -5,10 +5,16 @@
 {% endblock %}
 
 {% block body %}
-    {% embed 'views/form/default_form.html.twig' with {'form' : villeForm}%}
+    {% if is_granted('ROLE_ADMIN') %}
+    {% embed 'views/form/default_form.html.twig' with {'form' : villeForm} %}
         {% block h2 %} ENI Events | Modifier une ville {% endblock %}
         {% block buttonLabel %} Modifier {% endblock %}
-    {%endembed %}
+    {% endembed %}
+    {% else %}
+    <br>
+    <h2>Vous n'avez pas les droits pour modifier une ville</h2>
+    <br>
+    {% endif %}
 {% endblock %}
 
 

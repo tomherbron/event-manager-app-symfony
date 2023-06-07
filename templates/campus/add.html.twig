@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block body %}
+    {% if is_granted('ROLE_ADMIN')%}
     <span class="encadrement-contenu">
     <table class="table align-middle table-hover">
         <thead>
@@ -38,6 +39,12 @@
         </tbody>
     </table>
     </span>
+    {% else %}
+    <br>
+    <h2>Vous n'avez pas les droits pour ajouter un campus</h2>
+    {% endif %}
+
+
 {% endblock %}
 
 

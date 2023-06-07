@@ -42,7 +42,7 @@ class UtilisateurController extends AbstractController
         ]);
     }
 
-    #[IsGranted("ROLE_ADMIN")]
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/update/{id}', name: 'update', requirements: ["id" => "\d+"])]
     public function update(int                         $id,
                            Request                     $request,
@@ -52,6 +52,7 @@ class UtilisateurController extends AbstractController
     {
 
         $utilisateur = $utilisateurRepository->find($id);
+
         $utilisateurForm = $this->createForm(UtilisateurType::class, $utilisateur);
 
         $utilisateurForm->handleRequest($request);

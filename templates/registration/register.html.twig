@@ -4,7 +4,7 @@
 
 {% block body %}
     <span class="encadrement-contenu">
-
+         {% if is_granted('ROLE_ADMIN')%}
         <h1>Inscrire un utilisateur</h1>
 
         <br>
@@ -31,5 +31,9 @@
             <button class="btn btn-outline-light rounded-0" type="submit">Register</button>
         {{ form_end(registrationForm) }}
     </span>
-
+        {% else %}
+            <br>
+            <h2>Vous n'avez pas les droits nécessaires pour enregistrer un utilisateur !</h2>
+            <br>
+    {% endif %}
 {% endblock %}

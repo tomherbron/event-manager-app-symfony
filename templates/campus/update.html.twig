@@ -5,8 +5,14 @@
 {% endblock %}
 
 {% block body %}
+    {% if is_granted('ROLE_ADMIN') %}
     {% embed 'views/form/default_form.html.twig' with {'form' : campusForm} %}
         {% block h2 %} ENI Events | Modifier un campus {% endblock %}
         {% block buttonLabel %} Modifier {% endblock %}
     {% endembed %}
+    {% else %}
+    <br>
+    <h2>Vous n'avez pas les droits pour modifier un campus !</h2>
+    <br>
+    {% endif %}
 {% endblock %}

@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-
+    {% if is_granted('ROLE_ADMIN')%}
     <span class="encadrement-contenu">
         <h2>Ajouter une ville</h2>
         <br>
@@ -43,8 +43,11 @@
             </td>
         </tr>
         </tbody>
-
-
+{% else %}
+        <br>
+            <h2>Vous n'avez pas les droits pour ajouter une ville !</h2>
+        <br>
+{% endif %}
     </table>
 
 
