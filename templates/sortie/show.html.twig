@@ -51,7 +51,7 @@
                 <tbody>
                 {% for u in sortie.utilisateurs %}
                         <tr>
-                            <td><a id="tableau-donnees" href="{{ path('utilisateur_show', {'id':u.id }) }}">{{ u.username }}</a></td>
+                            <td id="tableau-donnees"><a id="tableau-donnees" href="{{ path('utilisateur_show', {'id':u.id }) }}">{{ u.username }}</a></td>
                             <td id="tableau-donnees">{{ u.nom }}</td>
 
                         </tr>

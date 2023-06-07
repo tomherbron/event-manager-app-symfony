@@ -15,12 +15,10 @@
     main {
         padding: 5em 10em;
         font-family: 'Geologica', sans-serif;
-        color : #FFFFFF;
+        color: #FFFFFF;
         min-height: 100vh;
-
-
-
     }
+
 
     body {
         font-family: 'Geologica', sans-serif;
@@ -28,7 +26,15 @@
         background-size: cover;
     }
 
-    a, p, text {
+    a{
+        text-decoration: none !important;
+        font-family: 'Roboto', sans-serif;
+        color: #FFFFFF;
+    }
+    a:hover{
+        color:dimgrey !important;
+    }
+    p, text {
         font-family: 'Roboto', sans-serif;
         color: #FFFFFF;
     }
