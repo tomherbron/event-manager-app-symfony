@@ -252,22 +252,22 @@
 
 /*!* Flash *!*/
 
-/*.flash {*/
-/*    padding: 20px;*/
-/*    font-weight: bold;*/
-/*    font-size: 1.4rem;*/
-/*    margin: 1rem 0;*/
-/*    border-radius: 5px;*/
-/*    color: #132135;*/
-/*}*/
+.flash {
+    padding: 20px;
+    font-weight: bold;
+    font-size: 1.4rem;
+    margin: 1rem 0;
+    border-radius: 5px;
+    color: #132135;
+}
 
-/*.flash-success {*/
-/*    background-color: lawngreen*/
-/*}*/
+.flash-success {
+    background-color: lawngreen
+}
 
-/*.flash-error {*/
-/*    background-color: red*/
-/*}*/
+.flash-error {
+    background-color: red
+}
 
 
 /*.link_button {*/

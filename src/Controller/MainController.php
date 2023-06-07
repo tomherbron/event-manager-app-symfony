@@ -7,6 +7,7 @@ use phpDocumentor\Reflection\Types\This;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
 
 class MainController extends AbstractController
 {
@@ -17,7 +18,7 @@ class MainController extends AbstractController
 
         if (!$user->isActif()){
             $message = "Ce compte a été désactivé.";
-            return $this->render('security/logout.html.twig', ['error' => $message]);
+            return $this->redirectToRoute('app_login', ['error' => $message]);
         }
 
         return $this->render('main/home.html.twig');
