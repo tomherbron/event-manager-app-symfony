@@ -14,8 +14,8 @@
         {% endembed %}
         <br>
     </div>
-    <div class="table-responsive text-white encadrement-contenu">
-        <table class="table table-striped align-middle  table-borderless">
+    <div class="table-responsive encadrement-contenu">
+        <table class="table align-middle table-hover">
             <thead>
             <tr>
                 <th id="tableau-donnees">Nom de la sortie</th>
@@ -42,10 +42,10 @@
                                 {%else %}
                                 <td id="tableau-donnees"> </td>
                             {% endif %}
-                            <td>
+                            <td id="tableau-donnees">
                                 <a  id="tableau-donnees" href="{{ path('utilisateur_show', {'id':sortie.organisateur.id }) }}">{{ sortie.organisateur.username }}</a>
                             </td>
-                            <td>
+                            <td id="tableau-donnees">
                                 <a id="tableau-donnees" href="{{ path('sortie_show', {'id':sortie.id }) }}">Afficher</a>
                                 {% if sortie.dateLimiteInscription > date('now') and sortie.nbMaxInscriptions > sortie.utilisateurs.count and app.user.id not in sortie.utilisateurs|map(user => user.id) %}
                                     <a id="tableau-donnees" href="{{ path('sortie_subscribe', {'id':sortie.id }) }}">S'inscrire</a>

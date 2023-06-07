@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-sm bg-body-tertiary bg-opacity-10">
     <div class="container-fluid">
 
-        <a class="navbar-brand " href="{{ path('main_home') }}">
+        <a class="navbar-brand  " href="{{ path('main_home') }}">
             <img src="{{ asset('img/LogoooEnd.png') }}" alt="Eni Event" class="max-width:20%">
         </a>
 
@@ -14,8 +14,8 @@
 
                 <div class="navbar-nav me-auto mb-2 mb-lg-0">
 
-                    <li class="nav-item">
-                        <a id="list-navbar" class="nav-link active" aria-current="page" href="{{ path('main_home') }}">Accueil</a>
+                    <li class="nav-item icon-link-hover">
+                        <a id="list-navbar" class="nav-link active icon-link-hover" aria-current="page" href="{{ path('main_home') }}">Accueil</a>
                     </li>
 
                     {% if app.user %}

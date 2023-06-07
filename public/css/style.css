@@ -1,11 +1,9 @@
 /*Mise en page générale*/
 
- /*html{*/
+ html{
 
- /*   Overflow-x:scroll;*/
- /*   Overflow-y:scroll;*/
 
- /*   }*/
+    }
 
     html, body {
         width: 100%;
@@ -24,6 +22,7 @@
     body {
         font-family: 'Geologica', sans-serif;
         color: #FFFFFF;
+        background-size: cover;
     }
 
     a, p, text {
@@ -82,12 +81,13 @@
 
     #tableau-donnees{
         font-family: 'Roboto', sans-serif;
-        color : #7a7a7a;
+        color : #ffffff;
         text-align: center;
+        background-color: rgba(100, 149, 237, 0);
 
     }
     table tr td, table tr th{
-        background-color: rgb(227, 238, 243) !important;
+        /*background-color: rgb(227, 238, 243) !important;*/
     }
 
 
@@ -103,7 +103,7 @@
 /*Animation Background*/
 
     .wrapper{
-        position:relative;
+        /*position:relative;*/
         /*width: auto;*/
         /*height: auto;*/
         width: available ;
