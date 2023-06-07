@@ -14,13 +14,6 @@ class MainController extends AbstractController
     #[Route('/', name: 'main_home')]
     public function home(UtilisateurRepository $userRepository): Response
     {
-        $user = $userRepository->findOneBy(['username' => $this->getUser()->getUserIdentifier()]);
-
-        if (!$user->isActif()){
-            $message = "Ce compte a été désactivé.";
-            return $this->redirectToRoute('app_login', ['error' => $message]);
-        }
-
         return $this->render('main/home.html.twig');
     }
 }

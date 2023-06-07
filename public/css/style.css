@@ -212,6 +212,10 @@
     display: block;
 }
 
+.button-padding {
+    padding-bottom: 10px;
+}
+
 
 /*body{*/
 /*    font-family: 'Fira Sans', sans-serif;*/
