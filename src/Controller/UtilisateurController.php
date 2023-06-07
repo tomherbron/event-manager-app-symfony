@@ -22,9 +22,20 @@ class UtilisateurController extends AbstractController
     {
         $utilisateur = $utilisateurRepository->find($id);
 
+        if (!$utilisateur->isActif()){
+            $message = 'Ce compte est désactivé.';
+            return $this->render('utilisateur/show.html.twig', [
+                'utilisateur' => $utilisateur,
+                'message' => $message
+            ]);
+
+        }
+
         if (!$utilisateur) {
             throw $this->createNotFoundException("Utilisateur non trouvé !");
         }
+
+
 
         return $this->render('utilisateur/show.html.twig', [
             'utilisateur' => $utilisateur,
@@ -72,6 +83,40 @@ class UtilisateurController extends AbstractController
             'utilisateur' => $utilisateur,
             'utilisateurForm' => $utilisateurForm->createView()
         ]);
+    }
+
+    #[Route('/deactivate/{id}', name: 'deactivate', requirements: ["id" => "\d+"])]
+    public function deactivate(int $id, Request $request, UtilisateurRepository $utilisateurRepository) : Response
+    {
+
+        $user = $utilisateurRepository->find($id);
+        $user->setActif(false);
+        $utilisateurRepository->save($user, true);
+
+        $this->addFlash('success', 'Compte désactivé.');
+        return $this->redirectToRoute('utilisateur_show', ['id' => $user->getId()]);
+
+
+    }
+
+    #[Route('/reactivate/{id}', name: 'reactivate', requirements: ["id" => "\d+"])]
+    public function reactivate(int $id, Request $request, UtilisateurRepository $utilisateurRepository) : Response
+    {
+
+        $user = $utilisateurRepository->find($id);
+
+        if (!$user->isActif()){
+            $user->setActif(true);
+            $utilisateurRepository->save($user, true);
+
+            $this->addFlash('success', 'Compte réactivé.');
+            return $this->redirectToRoute('utilisateur_show', ['id' => $user->getId()]);
+        }
+
+        return $this->render('utilisateur/show.html.twig', [
+            'utilisateur' => $user,
+        ]);
+
     }
 
 }

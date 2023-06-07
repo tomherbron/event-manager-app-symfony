@@ -5,35 +5,31 @@
 {% block body %}
     <span class="encadrement-contenu">
 
-    <h1>Inscrire un utilisateur</h1>
+        <h1>Inscrire un utilisateur</h1>
 
-    <br>
+        <br>
 
-    {{ form_start(registrationForm) }}
-    {{ form_row(registrationForm.username) }}
-    <br>
-    {{ form_row(registrationForm.plainPassword, {
-        label: 'Password'
-    }) }}
-    <br>
-    {{ form_row(registrationForm.nom) }}
-    <br>
-    {{ form_row(registrationForm.prenom) }}
-    <br>
-    {{ form_row(registrationForm.telephone) }}
-    <br>
-    {{ form_row(registrationForm.email) }}
-    <br>
-    {{ form_row(registrationForm.campus) }}
+        {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.username) }}
+        <br>
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}
+        <br>
+        {{ form_row(registrationForm.nom) }}
+        <br>
+        {{ form_row(registrationForm.prenom) }}
+        <br>
+        {{ form_row(registrationForm.telephone) }}
+        <br>
+        {{ form_row(registrationForm.email) }}
+        <br>
+        {{ form_row(registrationForm.campus) }}
 
-
-
-
-   {#  {{ form_row(registrationForm.agreeTerms) }}#}
-    <br>
-    <button type="submit" class="btn btn-outline-light rounded-0">Register</button>
-    {{ form_end(registrationForm) }}
-
+       {#  {{ form_row(registrationForm.agreeTerms) }}#}
+        <br>
+        <button type="submit" class="btn btn-outline-light rounded-0">Register</button>
+        {{ form_end(registrationForm) }}
     </span>
 
 {% endblock %}
