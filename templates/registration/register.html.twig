@@ -28,7 +28,9 @@
 
            {#  {{ form_row(registrationForm.agreeTerms) }}#}
             <br>
-            <button class="btn btn-outline-light rounded-0" type="submit">Register</button>
+        <div class="text-center">
+            <button class="btn btn-outline-light rounded-0" type="submit" onclick="confirm('Voulez-vous valider l\'inscription ?')">Confirmer l'inscription</button>
+        </div>
         {{ form_end(registrationForm) }}
     </span>
         {% else %}

@@ -7,7 +7,7 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
 <div class="text-center">
-    <button class="btn btn-outline-light rounded-0">{% block buttonLabel %}{% endblock %}</button>
+    <button class="btn btn-outline-light rounded-0" onclick="confirm('Confirmer ?')">{% block buttonLabel %}{% endblock %}</button>
 </div>
 {{ form_end(form) }}
 

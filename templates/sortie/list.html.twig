@@ -84,7 +84,7 @@
                                 </button>
                                 {% if sortie.dateLimiteInscription > date('now') and sortie.nbMaxInscriptions > sortie.utilisateurs.count and app.user.id not in sortie.utilisateurs|map(user => user.id) %}
                                 <button class="btn btn-outline-success rounded-1 btn-success">
-                                    <a id="tableau-donnees" href="{{ path('sortie_subscribe', {'id':sortie.id }) }}">S'inscrire</a>
+                                    <a id="tableau-donnees" href="{{ path('sortie_subscribe', {'id':sortie.id }) }}"> S'inscrire </a>
                                 </button>
                                 {% endif %}
                     {% if app.user.id in sortie.utilisateurs|map(user => user.id) %}

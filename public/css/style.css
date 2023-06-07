@@ -219,7 +219,12 @@
 }
 
 .button-padding {
-    padding-bottom: 10px;
+    padding-bottom: 20px;
+}
+
+.remember-me #label {
+    display: flex;
+    flex-direction: row;
 }
 
 
