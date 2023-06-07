@@ -32,7 +32,10 @@
         <tr>
             <td id="tableau-donnees">
                 {{ form_start(villeForm) }}
-                {{ form_widget(villeForm) }}
+                {{ form_row(villeForm.nom) }}
+            </td>
+            <td id="tableau-donnees">
+                {{ form_row(villeForm.codePostal) }}
             </td>
             <td id="tableau-donnees">
                 <button class="btn btn-outline-light btn-dark rounded-0" type="submit">Enregistrer</button>
