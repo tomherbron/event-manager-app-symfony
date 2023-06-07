@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Email de récupération de mot de passe envoyé.{% endblock %}
+
+{% block body %}
+    <p>
+        Si vous avez bien un compte chez ENI Event, vous allez recevoir un email qui vous permettra de récupérer votre mot de passe.
+        Ce lien va expirer dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+    </p>
+    <p>Si vous ne recevez pas l'email, vérifiez vos spams ou <a href="{{ path('app_forgot_password_request') }}">essayer à nouveau</a>.</p>
+{% endblock %}

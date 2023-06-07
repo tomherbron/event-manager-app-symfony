@@ -1,13 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Se connecter{% endblock %}
 
 {% block body %}
 <form method="post" class="encadrement-contenu">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
-
     {% if app.user %}
         <div class="mb-3">
             Vous êtes connecté en tant que {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
@@ -21,9 +20,10 @@
     <label for="inputPassword">Mot de passe</label>
     <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
+    <br>
+
     <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+           value="{{ csrf_token('authenticate') }}">
 
 
         <div class="checkbox mb-3">
@@ -36,6 +36,8 @@
     <button class="btn btn-outline-light rounded-0" type="submit" value="{{ path('sortie_list') }}">
         Se connecter
     </button>
-
+    <br>
+    <br>
+    <button class="btn btn-outline-light rounded-0"><a href="{{ path('app_forgot_password_request') }}">Mot de passe oublié?</a> </button>
 </form>
 {% endblock %}

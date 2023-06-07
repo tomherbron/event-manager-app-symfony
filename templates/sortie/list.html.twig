@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-    <h2>Liste des sorties</h2>
+    <h2>ENI Event | Liste des sorties</h2>
     <br>
     <br>
     <div class="row">
@@ -43,7 +43,6 @@
             </form>
         </div>
     </div>
-    <br>
     <div class="table-responsive encadrement-contenu">
         <table class="table align-middle table-hover">
             <thead>
@@ -59,38 +58,43 @@
             </tr>
             </thead>
             <tbody>
-            {% for sortie in sorties %}
-                {% if sortie.etat.libelle != 'Créée' or  sortie.organisateur.id == app.user.id %}
-                    <tr>
-                        <td id="tableau-donnees">{{ sortie.nom }}</td>
-                        <td id="tableau-donnees">{{ sortie.dateHeureDebut | date('d/m/Y - H:i') }}</td>
-                        <td id="tableau-donnees">{{ sortie.dateLimiteInscription | date('d/m/Y') }}</td>
-                        <td id="tableau-donnees">{{ sortie.utilisateurs.count }}/{{ sortie.nbMaxInscriptions }}</td>
-                        <td id="tableau-donnees">{{ sortie.etat.libelle }}</td>
-                        {% if app.user.id in sortie.utilisateurs|map(user => user.id) %}
-                            <td id="tableau-donnees">X</td>
-                        {% else %}
-                            <td id="tableau-donnees"></td>
-                        {% endif %}
-                        <td id="tableau-donnees">
-                            <a id="tableau-donnees"
-                               href="{{ path('utilisateur_show', {'id':sortie.organisateur.id }) }}">{{ sortie.organisateur.username }}</a>
-                        </td>
-                        <td id="tableau-donnees">
-                            <a id="tableau-donnees" href="{{ path('sortie_show', {'id':sortie.id }) }}">Afficher</a>
-                            {% if sortie.dateLimiteInscription > date('now') and sortie.nbMaxInscriptions > sortie.utilisateurs.count and app.user.id not in sortie.utilisateurs|map(user => user.id) %}
-                                <a id="tableau-donnees" href="{{ path('sortie_subscribe', {'id':sortie.id }) }}">S'inscrire</a>
-                            {% endif %}
+                {% for sortie in sorties %}
+                    {% if sortie.etat.libelle != 'Créée' or  sortie.organisateur.id == app.user.id %}
+                        <tr>
+                            <td id="tableau-donnees">{{ sortie.nom }}</td>
+                            <td id="tableau-donnees">{{ sortie.dateHeureDebut | date('d/m/Y - H:i') }}</td>
+                            <td id="tableau-donnees">{{ sortie.dateLimiteInscription | date('d/m/Y') }}</td>
+                            <td id="tableau-donnees">{{ sortie.utilisateurs.count }}/{{ sortie.nbMaxInscriptions }}</td>
+                            <td id="tableau-donnees">{{ sortie.etat.libelle }}</td>
                             {% if app.user.id in sortie.utilisateurs|map(user => user.id) %}
-                                <a id="tableau-donnees" href="{{ path('sortie_unsubscribe', {'id':sortie.id }) }}">Se
-                                    désister</a>
+                                <td id="tableau-donnees">X</td>
+                                {%else %}
+                                <td id="tableau-donnees"> </td>
                             {% endif %}
-                        </td>
-                    </tr>
-                {% endif %}
-            {% endfor %}
+                            <td id="tableau-donnees">
+                                    <a  id="tableau-donnees" href="{{ path('utilisateur_show', {'id':sortie.organisateur.id }) }}">{{ sortie.organisateur.username }}</a>
+                            </td>
+                            <td id="tableau-donnees">
+                                <button class="btn btn-outline-light rounded-0">
+                                    <a id="tableau-donnees" href="{{ path('sortie_show', {'id':sortie.id }) }}">Afficher</a>
+                                </button>
+                                {% if sortie.dateLimiteInscription > date('now') and sortie.nbMaxInscriptions > sortie.utilisateurs.count and app.user.id not in sortie.utilisateurs|map(user => user.id) %}
+                                <button class="btn btn-outline-success rounded-0 btn-success">
+                                    <a id="tableau-donnees" href="{{ path('sortie_subscribe', {'id':sortie.id }) }}">S'inscrire</a>
+                                </button>
+                                {% endif %}
+                    {% if app.user.id in sortie.utilisateurs|map(user => user.id) %}
+                                <button class="btn btn-outline-danger rounded-0 btn-danger">
+                                    <a id="tableau-donnees" href="{{ path('sortie_unsubscribe', {'id':sortie.id }) }}">Se désister</a>
+                                </button>
+                        {% endif %}
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
             </tbody>
         </table>
     </div>
 
 {% endblock %}
+
