@@ -30,15 +30,18 @@
     </section>
     </span>
     <br>
-    <div>
-        {% if app.user.id == utilisateur.id %}
-            <a class="link_button btn btn-outline-light rounded-0" href="{{ path('utilisateur_update', {'id':utilisateur.id }) }}">Modifier</a>
-        {% endif %}
-        <br>
-        {% if is_granted('ROLE_ADMIN') and utilisateur.actif == true %}
-            <a class="link_button btn btn-outline-light rounded-0" href="{{ path('utilisateur_deactivate', {'id':utilisateur.id }) }}">Désactiver le compte</a>
-        {% elseif is_granted('ROLE_ADMIN') and utilisateur.actif == false %}
-            <a class="link_button btn btn-outline-light rounded-0" href="{{ path('utilisateur_reactivate', {'id':utilisateur.id }) }}">Réactiver le compte</a>
-        {% endif %}
+    <div class="text-center">
+        <div class="button-padding">
+            {% if app.user.id == utilisateur.id %}
+                <a class="link_button btn btn-outline-light rounded-0 button-padding" href="{{ path('utilisateur_update', {'id':utilisateur.id }) }}">Modifier</a>
+            {% endif %}
+        </div>
+        <div class="button-padding">
+            {% if is_granted('ROLE_ADMIN') and utilisateur.actif == true %}
+                <a class="link_button btn btn-outline-light rounded-0 text-center button-padding" href="{{ path('utilisateur_deactivate', {'id':utilisateur.id }) }}">Désactiver le compte</a>
+            {% elseif is_granted('ROLE_ADMIN') and utilisateur.actif == false %}
+                <a class="link_button btn btn-outline-light rounded-0 text-center" href="{{ path('utilisateur_reactivate', {'id':utilisateur.id }) }}">Réactiver le compte</a>
+            {% endif %}
+        </div>
     </div>
 {% endblock %}

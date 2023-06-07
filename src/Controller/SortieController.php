@@ -188,7 +188,7 @@ class SortieController extends AbstractController
         }
 
         $this->addFlash('error', 'La sortie est déjà ' . $sortie->getEtat()->getLibelle() . '.');
-        return $this->redirectToRoute('main_home');
+        return $this->redirectToRoute('sortie_list');
 
     }
 
