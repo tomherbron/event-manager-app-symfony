@@ -210,7 +210,7 @@ class SortieController extends AbstractController
 
             $user->addSortie($sortie);
             $utilisateurRepository->save($user, true);
-            $this->addFlash('success', 'Inscription validée');
+            $this->addFlash('success', 'Inscription validée.');
             return $this->redirectToRoute('sortie_list', ['id' => $sortie->getId()]);
 
         }

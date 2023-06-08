@@ -79,8 +79,8 @@
                                     <a id="tableau-donnees" href="{{ path('utilisateur_show', {'id':sortie.organisateur.id }) }}">{{ sortie.organisateur.username }}</a>
                             </td>
                             <td id="tableau-donnees" class="text-start">
-                                <button class="btn btn-outline-light rounded-1>
-                                    <a href="{{ path('sortie_show', {'id':sortie.id }) }}">Afficher</a>
+                                <button class="btn btn-outline-light rounded-1">
+                                    <a id="tableau-donnees" href="{{ path('sortie_show', {'id':sortie.id }) }}">Afficher</a>
                                 </button>
                                 {% if sortie.dateLimiteInscription > date('now') and sortie.nbMaxInscriptions > sortie.utilisateurs.count and app.user.id not in sortie.utilisateurs|map(user => user.id) %}
                                 <button class="btn btn-outline-success rounded-1 btn-success">
